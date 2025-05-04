@@ -1,6 +1,6 @@
-import { responseModel } from "../responseModel";
+import { ResponseModel } from "../responseModel";
 import { orderItems } from "./orderItems";
 
-export interface orderItemsResponseModel extends responseModel {
+export interface orderItemsResponseModel extends ResponseModel {
   data: orderItems[];
 }

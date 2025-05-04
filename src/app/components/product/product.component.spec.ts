@@ -11,11 +11,6 @@ describe('ProductComponent', () => {
       imports: [ProductComponent]
     })
     .compileComponents();
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> e41cde0f8ff84c0833d990b427ad5cbbb641bb55
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

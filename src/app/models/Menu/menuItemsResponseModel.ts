@@ -1,6 +1,6 @@
 import { MenuItems } from './menuItems';
-import { responseModel } from '../responseModel';
+import { ResponseModel } from '../responseModel';
 
-export interface MenuItemResponseModel extends responseModel {
+export interface MenuItemResponseModel extends ResponseModel {
   data: MenuItems[];
 }
