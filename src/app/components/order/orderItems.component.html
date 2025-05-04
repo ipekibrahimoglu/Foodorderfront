@@ -1,0 +1,7 @@
+<h2>Sipariş Öğeleri</h2>
+<ul *ngIf="orderItems.length > 0">
+  <li *ngFor="let item of orderItems">
+    <strong>{{ item.menuItem.name }}</strong> - {{ item.quantity }} adet - {{ item.price }} TL
+  </li>
+</ul>
+<p *ngIf="orderItems.length === 0">Henüz sipariş bulunamadı.</p>

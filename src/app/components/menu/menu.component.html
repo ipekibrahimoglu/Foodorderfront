@@ -1,0 +1,20 @@
+<div class="card mt-3">
+  <div class="card-header bg-primary text-white">
+    <h4>Menüler</h4>
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li *ngFor="let menu of menus" class="list-group-item">
+        <h5>{{ menu.name }}</h5>
+        <p>{{ menu.description }}</p>
+        <small class="text-muted">Restoran: {{ menu.restaurant.name }}</small>
+
+        <ul class="mt-2 ps-3">
+          <li *ngFor="let item of menu.MenuItems">
+            🍽️ {{ item.name }} - {{ item.price }} ₺
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
