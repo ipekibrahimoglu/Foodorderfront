@@ -1,20 +1,41 @@
 <div class="card mt-3">
-  <div class="card-header bg-primary text-white">
+  <div class="card-header bg-trakya">
     <h4>Menüler</h4>
   </div>
   <div class="card-body">
     <ul class="list-group">
-      <li *ngFor="let menu of menus" class="list-group-item">
-        <h5>{{ menu.name }}</h5>
-        <p>{{ menu.description }}</p>
-        <small class="text-muted">Restoran: {{ menu.restaurant.name }}</small>
-
-        <ul class="mt-2 ps-3">
+      <li *ngFor="let menu of menus" class="list-group-item text-center">
+  
+        <!-- Kahvaltı görseli -->
+        <img *ngIf="menu.name.toLowerCase().includes('kahvaltı')" 
+             src="assets/menuler/kahvalti.png" 
+             alt="Kahvaltı" 
+             class="menu-img-top mb-2">
+      
+        <!-- Ciğermatik görseli -->
+        <img *ngIf="menu.name.toLowerCase().includes('ciger')" 
+             src="assets/menuler/cigermatik.png" 
+             alt="Ciğermatik" 
+             class="menu-img-top mb-2">
+      
+        <!-- Ana Yemek görseli -->
+        <img *ngIf="menu.name.toLowerCase().includes('ana')" 
+             src="assets/menuler/anayemek2.png" 
+             alt="Ana Yemek" 
+             class="menu-img-top mb-2">
+      
+        <h5 class="menu-title">{{ menu.name }}</h5>
+        <p class="menu-description">{{ menu.description }}</p>
+        <small class="menu-restaurant text-muted">Restoran: {{ menu.restaurant.name }}</small>
+      
+        <ul class="mt-2 ps-3 text-start">
           <li *ngFor="let item of menu.MenuItems">
-            🍽️ {{ item.name }} - {{ item.price }} ₺
+            🍽 {{ item.name }} - {{ item.price }} ₺
           </li>
         </ul>
       </li>
+      
+      
     </ul>
   </div>
 </div>
