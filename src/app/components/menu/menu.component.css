@@ -9,7 +9,8 @@
   .menu-title {
     font-size: 18px;
     font-weight: bold;
-    color: #c62828;
+    color: #c62828 !important;
+
     margin-top: 5px;
   }
   
