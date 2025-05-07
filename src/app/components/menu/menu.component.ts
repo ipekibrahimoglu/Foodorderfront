@@ -1,110 +1,109 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Menu } from '../../models/Menu/menu';
 import { MenuResponseModel } from '../../models/Menu/menuResponseModel';
+import { MenuService } from '../../menu.service';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   standalone: true,
   selector: 'app-menu',
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
 
   menus: Menu[] = [];
-  apiUrl: string = 'http://localhost:5161/api/Menus';
+  menusLoaded: boolean = false;
+  menuByIdLoaded: boolean = false;
+  menusByRestaurantLoaded: boolean = false;
+  searchMenusLoaded: boolean = false;
+
   menuResponseModel: MenuResponseModel = {
     data: this.menus,
     message: "",
     success: true,
   };
 
-  constructor(private httpclient: HttpClient) {
-    this.httpclient.get // Bağımlılık burada inject edilir, constructor çalıştığında henüz ngOnInit çalışmamıştır.
-      
+  constructor(private menuService:MenuService ) {
+    // Bağımlılık burada inject edilir, constructor çalıştığında henüz ngOnInit çalışmamıştır.
 
   }
 
   ngOnInit(): void {
-    console.log("ngOnInit çalıştı");
-    this.getMenus(); // örnek API çağrısı
-    
-  }
-
-
- // 1. Tüm Menüler
-getMenus() {
-  this.httpclient.get<Menu[]>(`${this.apiUrl}`).subscribe({ // subscribe olmak isteyen ap
-    next: res => {
-      this.menus = res;
-      console.log("Tüm menüler:", res);
-    },
-    error: err => console.error("Menü çekme hatası:", err)
-  });
-}
-
-// 2. Menü Ekleme (POST)
-addMenu(newMenu: Menu) {
-  this.httpclient.post<Menu>(`${this.apiUrl}`, newMenu).subscribe({
-    next: res => console.log("Menü eklendi:", res),
-    error: err => console.error("Menü ekleme hatası:", err)
-  });
-}
-
-// 3. Menü Güncelleme (PUT)
-updateMenu(updatedMenu: Menu) {
-  this.httpclient.put<Menu>(`${this.apiUrl}`, updatedMenu).subscribe({
-    next: res => console.log("Menü güncellendi:", res),
-    error: err => console.error("Menü güncelleme hatası:", err)
-  });
-}
-
-// 4. Menü ID ile Getirme (GET /{id})
-getMenuById(id: string) {
-  this.httpclient.get<Menu>(`${this.apiUrl}/${id}`).subscribe({
-    next: res => console.log("Menü bulundu:", res),
-    error: err => console.error("Menü ID ile çekme hatası:", err)
-  });
-}
-
-// 5. Menü Silme (DELETE /{id})
-deleteMenu(id: string) {
-  this.httpclient.delete(`${this.apiUrl}/${id}`).subscribe({
-    next: () => console.log("Menü silindi"),
-    error: err => console.error("Menü silme hatası:", err)
-  });
-}
-
-// 6. Restorana göre menüleri getir (GET /byrestaurant/{restaurantId})
-getMenusByRestaurant(restaurantId: string) {
-  this.httpclient.get<Menu[]>(`${this.apiUrl}/byrestaurant/${restaurantId}`).subscribe({
-    next: res => {
-      this.menus = res;
-      console.log("Restorana ait menüler:", res);
-    },
-    error: err => console.error("Restoran menüleri çekme hatası:", err)
-  });
-}
-
-// 7. Menü arama (GET /search?name=x&restaurantId=y)
-searchMenus(name?: string, restaurantId?: string) {
-  const queryParams = [];
-  if (name) queryParams.push(`name=${encodeURIComponent(name)}`);
-  if (restaurantId) queryParams.push(`restaurantId=${restaurantId}`);
-  const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
-
-  this.httpclient.get<Menu[]>(`${this.apiUrl}/search${queryString}`).subscribe({
-    next: res => {
-      this.menus = res;
-      console.log("Arama sonucu:", res);
-    },
-    error: err => console.error("Menü arama hatası:", err)
-  });
-}
-
+    this.getMenus();
   
   }
+  
 
+ // 1. Tüm Menüler
+ getMenus() {
+  this.menuService.getMenus().subscribe({
+    next: (response) => {
+      console.log("Gelen menüler:", response); // Test için
+      this.menus = response.data;
+      this.menusLoaded = true;}
+  })
+    
+  }
+ }
+
+// // // 2. Menü Ekleme (POST)
+// // addMenu(newMenu: Menu) { // eklenecek menu olacak mı olacaksa nerede
+// //   this.menuService.addMenu().subscribe()
+// // }
+
+// // // 3. Menü Güncelleme (PUT)// update de aynı şekilde
+// // updateMenu(updatedMenu: Menu) {
+// //   this.menuService.updateMenu().subscribe
+// // }
+
+// // 4. Menü ID ile Getirme (GET /{id})
+// getMenuById(id: string) {
+//   this.menuService.getMenuById(id).subscribe({
+//     next: response => {
+//       this.menus = response.data;
+//       this.menuByIdLoaded = true;
+//     },
+//     error: err => {
+//       console.error("getMenuById hatası:", err);
+
+//     }
+//   });
+// }
+
+// // // 5. Menü Silme (DELETE /{id})// menu silme gerekli mi şu an
+// // deleteMenu(id: string) {
+// //   this.menuService.deleteMenu().subscribe()
+// // }
+//  // Restorana göre menüleri getir (GET /byrestaurant/{restaurantId})
+//  getMenusByRestaurant(restaurantId: string) {
+//    this.menuService.getMenusByRestaurant("Yeni Lezzet Restorani").subscribe({
+//      next: response => {
+//        this.menus = response.data;
+//        this.menusByRestaurantLoaded = true;
+//      },
+//     error: err => {
+//        console.error("getMenusByRestaurant hatası:", err);
+//        this.menusByRestaurantLoaded = true;
+//     }
+//    });
+//  }
+
+// // 7. Menü arama (GET /search?name=x&restaurantId=y)
+// searchMenus(name?: string, restaurantId?: string) {
+// this.menuService.searchMenus("Ana Yemekler", "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa").subscribe({
+//   next: (response: { data: any; }) => {
+//     this.menus = response.data;
+//     this.searchMenusLoaded = true;
+//   },
+//   error: err => {
+//     console.error("searchMenus hatası:", err);
+//     this.searchMenusLoaded = true;
+//   }
+// });
+// }
 

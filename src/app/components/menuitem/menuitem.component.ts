@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Eğer ngIf, ngFor vs kullanacaksan
 
 @Component({
+  standalone: true, // ✅ Standalone olduğu belirtiliyor
   selector: 'app-menuitem',
-  imports: [],
+  imports: [CommonModule], // ✅ Gerekirse buraya diğer modüller de eklenir
   templateUrl: './menuitem.component.html',
-  styleUrl: './menuitem.component.css'
+  styleUrls: ['./menuitem.component.css'] // ✅ styleUrl değil styleUrls
 })
-export class MenuitemComponent {
+export class MenuItemComponent implements OnInit{
+
+
+  
+  constructor(){
+
+  }
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
 }
