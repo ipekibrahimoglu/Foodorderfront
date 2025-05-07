@@ -39,32 +39,79 @@
 <!-- 1. Veri yüklenene kadar spinner göster -->
 
  <!-- Yükleniyorsa spinner göster -->
-<div *ngIf="!menusLoaded" class="text-center my-4">
+<!-- <div *ngIf="!menusLoaded" class="text-center my-4">
   <div class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Yükleniyor...</span>
   </div>
 </div>
 
 <!-- Yükleme bittiyse ve menüler geldiyse -->
-<div *ngIf="menusLoaded && menus.length > 0; else noMenus">
+<!-- <div *ngIf="menusLoaded; else noMenus">
+
   <div *ngFor="let menu of menus">
     <h3>{{ menu.name }}</h3>
-    <ul *ngIf="menu.menuItems?.length > 0; else noItems">
-      <li *ngFor="let item of menu.menuItems">
-        {{ item.name }} - {{ item.price }} ₺
-      </li>
-    </ul>
+    <div *ngFor="let menuitem of menu.menuItems">
+      <p>{{menuitem.name}} - {{menuitem.price}}</p>
+    </div>
+
     <ng-template #noItems>
       <p>Bu menüde ürün yok.</p>
     </ng-template>
   </div>
-</div>
+</div> -->
 
 <!-- Menü hiç yoksa -->
-<ng-template #noMenus>
+<!-- <ng-template #noMenus>
   <p>Hiç menü bulunamadı.</p>
-</ng-template>
+</ng-template> -->
 
+<!-- Yükleniyorken gösterilecek -->
+<!-- <ng-template #loadingMenuById>
+  <p>Menü yükleniyor…</p>
+</ng-template> -->
+
+<!-- ID ile eşleşen hiçbir menu yoksa gösterilecek -->
+<!-- <ng-template #noMenuFound>
+  <p></p>
+</ng-template> -->
+
+<!-- Menü başarıyla yüklendiğinde -->
+<!-- <div *ngIf="menuByIdLoaded; else loadingMenuById"> -->
+  <!-- response.data bir dizi dönüyorsa -->
+
+
+  <!-- <div *ngFor="let menu of menus">
+  <div *ngIf="menu.menuId == '44afdf60-2f1d-f011-91fd-2c98111a44ca' ; else noMenuFound"> -->
+    <!-- Tek menu için ilk elemanı alıyoruz -->
+    <!-- <div class="menu detayı"> -->
+      <!-- <h2>{{ menu.menuItems?.[0]?.menuId}}</h2>eger user owner sa aç bunları 
+      <p><strong></strong> {{ menu.menuItems?.[0]?.menuId }}</p> -->
+      <!-- <p><strong>Menü adı :</strong> {{ menu.name }}</p>
+      <p><strong>Açıklama:</strong> {{ menu.description}}</p>
+    <div *ngIf="menu.menuItems?.length">
+      <p><strong>İsim:</strong> {{ menu.menuItems?.[0]?.name }}</p>
+      <p><strong>Fiyat:</strong> {{ menu.menuItems?.[0]?.price }}</p>
+      </div>
+      <p><strong>Restoran:</strong> {{ menu.restaurant.address}}</p> -->
+      <!-- <h4>Menü Öğeleri</h4>
+      <div *ngIf="menu.menuItems?.[0]?.length > 0; else noItems">
+        <ul>
+          <li *ngFor="let item of menus[0].menuItems">
+            {{ item.name }} — {{ item.price }} ₺
+          </li>
+        </ul>
+      </div>
+    </div> -->
+      <!-- <ng-template #noItems>
+        <p>Bu menüde ürün yok.</p>
+      </ng-template>
+    </div>
+  </div>
+</div> -->
+
+
+
+ -->
 
 <!-- Menü ID'ye göre (Eğer ayrı gösterilmesi istenirse) -->
 <!-- <div *ngIf="menuByIdLoaded" class="card mt-4 border-info">
