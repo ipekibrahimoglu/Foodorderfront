@@ -1,1 +1,23 @@
-<p>restaurant works!</p>
+<h2>Restoranlar</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Restaurant ID</th>
+            <th>Owner ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let restaurant of restaurants">
+            <td>{{restaurant.name}}</td>
+            <td>{{restaurant.description}}</td>
+            <td>{{restaurant.phoneNumber}}</td>
+            <td>{{restaurant.address}}</td> <!-- düzeltildi -->
+            <td>{{restaurant.restaurantId}}</td>
+            <td>{{restaurant.ownerId}}</td>
+        </tr>
+    </tbody>
+</table>
