@@ -1,83 +1,62 @@
-<!-- <div class="container mt-4">
-  <h2>🍽️ Menü Listesi</h2>
 
-  <div *ngIf="!menusLoaded" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Yükleniyor...</span>
-  </div> -->
+<!-- Tüm içerik yanyana dursun -->
+<div class="d-flex gap-4 justify-content-center align-items-start mt-4">
 
-  <!-- Menü Arama Alanı
-  <div class="input-group mb-3 mt-3">
-    <input type="text" class="form-control" [(ngModel)]="searchName" placeholder="Menü adıyla ara">
-    <button class="btn btn-outline-secondary" (click)="searchMenus(searchName, 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa')">Ara</button>
-  </div> -->
+  <!-- Sol: Menü listesi -->
+  <div class="card" style="width: 400px;">
+    <div class="card-header bg-trakya text-white">
+      <h4>Seçimini Yap!</h4>
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+        <li *ngFor="let menu of menus"
+            class="list-group-item text-center"
+            (click)="setCurrentMenu(menu)">
+          
+          <img *ngIf="menu.name.toLowerCase().includes('kahvaltı')" 
+              src="assets/menuler/kahvalti.png" 
+              alt="Kahvaltı" 
+              class="menu-img-top mb-2">
+          
+          <img *ngIf="menu.name.toLowerCase().includes('ciger')" 
+              src="assets/menuler/cigermatik.png" 
+              alt="Ciğermatik" 
+              class="menu-img-top mb-2">
+          
+          <img *ngIf="menu.name.toLowerCase().includes('ana')" 
+              src="assets/menuler/anayemek2.png" 
+              alt="Ana Yemek" 
+              class="menu-img-top mb-2">
 
-<!--  
- <div *ngIf="menus.length > 0; else noMenus"> 
-    <div class="card mb-3" *ngFor="let menu of menus">
-      <div class="card-header bg-dark text-white">
-        {{ menu.name }}
-      </div>
-      <div class="card-body">
-        <p><strong>Açıklama:</strong> {{ menu.description }}</p>
-        <p><strong>Restoran:</strong> {{ menu.restaurant.name || 'Bilinmiyor' }}</p>
-
-        <ul class="list-group mt-2">
-          <li class="list-group-item" *ngFor="let item of menu.menuItems">
-            🍲 {{ item.name }} - {{ item.price }} ₺
-          </li>
-        </ul>
-      </div>
+          <h5 class="menu-title">{{ menu.name }}</h5>
+          <p class="menu-description">{{ menu.description }}</p>
+          <small class="menu-restaurant text-muted">Restoran: {{ menu.restaurant.name }}</small>
+        </li>
+      </ul>
     </div>
   </div>
 
-  
-  <ng-template #noMenus>
-    <div class="alert alert-warning mt-3">Menü bulunamadı.</div>
-  </ng-template>
-</div> -->
+  <!-- Sağ: Seçilen Menü Detayı -->
+  <div *ngIf="currentMenu" class="card p-4 card-center" style="width: 500px;">
+    <h4 class="text-center">Seçilen Menü: {{ currentMenu.name }}</h4>
+    <p><strong>Açıklama:</strong> {{ currentMenu.description }}</p>
+    <p><strong>Restoran:</strong> {{ currentMenu.restaurant?.name }}</p>
 
-<!-- 1. Veri yüklenene kadar spinner göster -->
-
- <!-- Yükleniyorsa spinner göster -->
-<!-- <div *ngIf="!menusLoaded" class="text-center my-4">
-  <div class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Yükleniyor...</span>
+    <ul class="mt-2 ps-3">
+      <li *ngFor="let item of currentMenu.menuItems">
+        🍽 {{ item.name }} — {{ item.price }} ₺
+      </li>
+    </ul>
   </div>
+
 </div>
+<!-- yukardaki kodda restoranlar gösterilir ve restoran seçimi yapılarak restoranın menüleri görüntülen
+ r-->>
 
-<!-- Yükleme bittiyse ve menüler geldiyse -->
-<!-- <div *ngIf="menusLoaded; else noMenus">
+<!-- Menü Listesi -->
 
-  <div *ngFor="let menu of menus">
-    <h3>{{ menu.name }}</h3>
-    <div *ngFor="let menuitem of menu.menuItems">
-      <p>{{menuitem.name}} - {{menuitem.price}}</p>
-    </div>
 
-    <ng-template #noItems>
-      <p>Bu menüde ürün yok.</p>
-    </ng-template>
-  </div>
-</div> -->
-
-<!-- Menü hiç yoksa -->
-<!-- <ng-template #noMenus>
-  <p>Hiç menü bulunamadı.</p>
-</ng-template> -->
-
-<!-- Yükleniyorken gösterilecek -->
-<!-- <ng-template #loadingMenuById>
-  <p>Menü yükleniyor…</p>
-</ng-template> -->
-
-<!-- ID ile eşleşen hiçbir menu yoksa gösterilecek -->
-<!-- <ng-template #noMenuFound>
-  <p></p>
-</ng-template> -->
-
-<!-- Menü başarıyla yüklendiğinde -->
-<!-- <div *ngIf="menuByIdLoaded; else loadingMenuById"> -->
-  <!-- response.data bir dizi dönüyorsa -->
+<!-- Tıklanan menünün detayları -->
 
 
   <!-- <div *ngFor="let menu of menus">
@@ -110,9 +89,6 @@
 </div> -->
 
 
-
- -->
-
 <!-- Menü ID'ye göre (Eğer ayrı gösterilmesi istenirse) -->
 <!-- <div *ngIf="menuByIdLoaded" class="card mt-4 border-info">
   <div class="card-header bg-info text-white">
@@ -144,3 +120,4 @@
 <!-- <ng-template #noSearchResults>
   <div class="alert alert-secondary mt-2">Aramaya uygun menü bulunamadı.</div>
 </ng-template> -->
+

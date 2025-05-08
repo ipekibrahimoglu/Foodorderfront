@@ -27,4 +27,27 @@
     background-color: #d84315; /* sıcak kırmızı ton */
     color: white;
   }
-    
+  .card {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .overlay-center {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2); /* opsiyonel: arka plan hafif karartma */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .card-center {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  

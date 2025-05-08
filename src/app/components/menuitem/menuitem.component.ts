@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MenuItems } from '../../models/Menu/menuItems';
 import { MenuItemService } from '../../menuitem.service';
+import { Menu } from '../../models/Menu/menu';
 
 @Component({
   standalone: true,
@@ -16,6 +17,9 @@ import { MenuItemService } from '../../menuitem.service';
 export class MenuItemComponent implements OnInit {
   
   menuItems: MenuItems[] = [];
+
+  currentMenuItem ?: MenuItems ;
+
 
   menuItemsLoaded = false;
   menuItemByIdLoaded = false;
@@ -123,4 +127,10 @@ export class MenuItemComponent implements OnInit {
       }
     });
   }
+
+  setCurrentMenuItem(menuitem: MenuItems): void {
+    this.currentMenuItem = menuitem;
+    console.log("secilen menuitem : ", menuitem);
+  }
+
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Menu } from '../../models/Menu/menu';
 import { MenuService } from '../../menu.service';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 //RESPONSE.Data ŞEKLİNDE KULLANILAMIŞTIR RESPONSE DİREKT MENU LİSTESİ DÖNMEKTEDİR
@@ -16,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 export class MenuComponent implements OnInit {
 
   menus: Menu[] = [];
+  currentMenu: Menu;
+
   menusLoaded: boolean = false;
   menuByIdLoaded: boolean = false;
   menusByRestaurantLoaded: boolean = false;
@@ -62,6 +63,12 @@ export class MenuComponent implements OnInit {
   });
 }
 
+setCurrentMenus(menu:Menu){
+
+this.currentMenu = menu;
+console.log("seçilen menü :" , this.currentMenu);
+
+}
 
  
 
@@ -123,4 +130,10 @@ export class MenuComponent implements OnInit {
 //   }
 // });
 // }
+
+  setCurrentMenu(menu: Menu): void {
+    this.currentMenu = menu;
+    console.log("secilen menuitem : ", menu);
+  }
+
 }

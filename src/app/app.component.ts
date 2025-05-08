@@ -19,8 +19,6 @@ import { MenuItemComponent } from './components/menuitem/menuitem.component';
     RouterOutlet,
     HttpClientModule,     // ✅ BURAYA EKLENMELİ!
     NaviComponent,
-    CategoryComponent,
-    ProductComponent,
     OrderComponent,
     MenuComponent,
     FormsModule,
