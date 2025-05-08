@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let review of reviews">
+    <tr *ngFor="let review of reviews" (click)="setCurrentReview(review)">
       <td>{{review.reviewId}}</td>
       <td>{{review.restaurantId}}</td>   
       <td>{{review.restaurant}}</td>
@@ -21,3 +21,13 @@
     </tr>
   </tbody>
 </table>
+<div *ngIf="currentReview" class="card mt-4 p-3 border rounded">
+  <h3>Seçilen Yorum Detayı</h3>
+  <p><strong>Ad:</strong> {{ currentReview.comment }}</p>
+  <p><strong>Açıklama:</strong> {{ currentReview.rating }}</p>
+  <p><strong>Adres:</strong> {{ currentReview.restaurant }}</p>
+  <p><strong>Telefon:</strong> {{ currentReview.reviewId }}</p>  
+  <p><strong>Sahip ID:</strong> {{ currentReview.reviewId }}</p>
+  <p><strong>Restoran ID:</strong> {{ currentReview.user }}</p>
+  <p><strong>Restoran ID:</strong> {{ currentReview.userId }}</p>
+</div>

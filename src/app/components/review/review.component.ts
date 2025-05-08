@@ -12,6 +12,8 @@ import { ReviewService } from '../../services/review.service';
 })
 export class ReviewComponent implements OnInit {
    reviews:Review[]=[];
+     currentReview:Review|null=null;
+   
 constructor(private reviewService:ReviewService ){ }
 
   ngOnInit(): void{
@@ -24,6 +26,11 @@ constructor(private reviewService:ReviewService ){ }
       this.reviews=response
     });
   }
+   setCurrentReview(review:Review):void{
+      this.currentReview=review;
+      console.log("Seçilen yorum:",review);
+      }
+
 }
 
 

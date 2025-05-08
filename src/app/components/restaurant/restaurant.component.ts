@@ -16,19 +16,29 @@ import { RestaurantService } from "../../services/restaurant.service";
 export class RestaurantComponent implements OnInit{
   
   restaurants:Restaurant[]=[];
-
+  currentRestaurant:Restaurant|null=null;
+  
+  
   constructor(private restaurantService:RestaurantService ){ }
 
-  ngOnInit(): void{
+  ngOnInit(): void{ 
     this.getRestaurants();  
   }
 
   getRestaurants(){
     this.restaurantService.getRestaurants().subscribe(response=>{
-      console.log(response);
+      console.log("getRestaurants çağırıldı",response);
       this.restaurants=response;
     });
   }
+
+  setCurrentRestaurant(restaurant:Restaurant):void{
+    this.currentRestaurant=restaurant;
+    console.log("Seçilen restorant:",restaurant);
+    }
+    
+      
+ 
 }
 
 
