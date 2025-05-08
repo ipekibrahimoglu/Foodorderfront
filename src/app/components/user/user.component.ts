@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-user',
@@ -9,11 +11,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './user.component.css'
 })
 export class UserComponent implements OnInit {
+
+user:User[]=[];
+dataLoaded = false;
+
 //onInit ngOnInit metodunun çalıştırılması içindir.
+  constructor(private userService:UserService){
+
+  }
 
 
-  ngOnInit(): void {//bileşen doma yerleşmeden önce çağırılır.
-    throw new Error('Method not implemented.');
+  ngOnInit(): void {
+    this.getUser();
+  }
+
+  getUser(){
+    this.userService.getUser().subscribe(response=>{
+      this.user=response.data
+      this.dataLoaded=true;
+    })
+    console.log();
   }
 
 

@@ -22,4 +22,39 @@
   .hakkimizda-hover:hover .hover-box {
     display: block;
   }
+ 
+  .btn-outline-success {
+    border-color: #c62828;
+    color: #c62828;
+    transition: box-shadow 0.3s ease;
+    outline: none;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: transparent; 
+    color: #c62828; 
+    box-shadow: 0 0 5px rgba(198, 40, 40, 0.5); 
+    cursor: pointer;
+  }
+
+  .btn-login {
+    background-color: transparent;
+    color: #333; 
+    border: 1px solid #c62828;
+    transition: box-shadow 0.3s ease;
+    outline: none;
+  }
+  
+  .btn-login:hover {
+    background-color: transparent;
+    color: #333;
+    box-shadow: 0 0 5px rgba(198, 40, 40, 0.4); 
+    cursor: pointer;
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #c62828; 
+    outline: none;
+  }
   
