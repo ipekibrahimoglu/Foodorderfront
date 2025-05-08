@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { RestaurantResponseModel } from "../../models/restaurantResponseModel";
+import { HttpClient } from "@angular/common/http";
+import { Restaurant } from "../../models/restaurant";
+import { RestaurantService } from "../../restaurant.service";
 
 @Component({
   selector: 'app-restaurant',
@@ -7,6 +12,33 @@ import { Component } from '@angular/core';
   templateUrl: './restaurant.component.html',
   styleUrl: './restaurant.component.css'
 })
-export class RestaurantComponent {
 
+export class RestaurantComponent implements OnInit{
+  
+  restaurants:Restaurant[]=[];
+  currentRestaurant:Restaurant|null=null;
+  
+  
+  constructor(private restaurantService:RestaurantService ){ }
+
+  ngOnInit(): void{ 
+    this.getRestaurants();  
+  }
+
+  getRestaurants(){
+    this.restaurantService.getRestaurants().subscribe((response:any)=>{
+      console.log("getRestaurants çağırıldı",response);
+      this.restaurants=response;
+    });
+  }
+
+  setCurrentRestaurant(restaurant:Restaurant):void{
+    this.currentRestaurant=restaurant;
+    console.log("Seçilen restorant:",restaurant);
+    }
+    
+      
+ 
 }
+
+
