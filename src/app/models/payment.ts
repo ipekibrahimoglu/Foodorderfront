@@ -1,3 +1,5 @@
+import { Order } from "./Order/order";
+
 export interface Payment{
     paymentId: string;
     orderId: string;
@@ -5,5 +7,5 @@ export interface Payment{
     amount: number;
     paymentMethod: string;
     isSuccessful?: boolean;  // bazı kayıtlarda eksik
-   // order?: Order;
+    order?: Order;
 }

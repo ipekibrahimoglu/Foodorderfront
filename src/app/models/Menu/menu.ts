@@ -1,4 +1,4 @@
-import { Restaurant } from "./restaurant";
+import { Restaurant } from "../restaurant";
 import { MenuItems } from "./menuItems";
 
 export interface Menu {

@@ -1,1 +1,38 @@
-<p>order works!</p>
+<!-- Yükleniyor göstergesi -->
+<div *ngIf="!dataLoaded" class="d-flex justify-content-center mt-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Yükleniyor...</span>
+  </div>
+</div>
+
+<!-- Sipariş tablosu -->
+<div *ngIf="dataLoaded" class="container mt-4">
+  <h4 class="mb-3">📦 Sipariş Listesi</h4>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Sipariş ID</th> 
+        <th>Kullanıcı</th>
+        <th>Restoran</th>
+        <th>Tarih</th>
+        <th>Durum</th>
+        <th>İşlem</th> <!-- ✅ Yeni sütun -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders"  [routerLink]="['/order-items', order.orderId]" style="cursor: pointer;">
+         <td>{{ order.orderId }}</td> 
+        <td>{{ order.user.fullName }}</td>
+        <td>{{ order.restaurant.name }}</td>  
+        <td>{{ order.orderDate | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ getStatusText(order.status) }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteOrder(order.orderId); $event.stopPropagation();">
+            İptal Et
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

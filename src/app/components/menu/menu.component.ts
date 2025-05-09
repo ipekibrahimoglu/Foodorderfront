@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Menu } from '../../models/Menu/menu';
-import { MenuResponseModel } from '../../models/Menu/menuResponseModel';
+
+
 
 @Component({
   standalone: true,
   selector: 'app-menu',
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
-
+ 
   menus: Menu[] = [];
-  apiUrl: string = 'http://localhost:5161/api/Menus';
-  menuResponseModel: MenuResponseModel = {
-    data: this.menus,
-    message: "",
-    success: true,
-  };
+  apiUrl: string =  'https://localhost:7292/api/Menus';
+  // menuResponseModel: ListResponseModel<Menu>{
+  //   data: this.menus,
+  //   message: "",
+  //   success: true,
+  // };
 
   constructor(private httpclient: HttpClient) {
     this.httpclient.get // Bağımlılık burada inject edilir, constructor çalıştığında henüz ngOnInit çalışmamıştır.
@@ -105,6 +106,6 @@ searchMenus(name?: string, restaurantId?: string) {
 }
 
   
-  }
-
+  
+}
 

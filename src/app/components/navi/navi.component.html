@@ -1,36 +1,76 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand" routerLink="/">Trakya Sepeti</a>
+
+    <!-- Mobil Menü Butonu -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menü İçeriği -->
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      
+      <!-- Sol Menü -->
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Anasayfa</a>
+        </li>
+
+        <!-- Restoranlar -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Restoranlar</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/yeni-lezzet">Yeni Lezzet Restoranı</a></li>
+            <li><a class="dropdown-item" routerLink="/cigermatik">Ciğermatik</a></li>
+            <li><a class="dropdown-item" routerLink="/dish-up">Dish Up!</a></li>
+          </ul>
+        </li>
+
+        <!-- İletişim -->
+        <li class="nav-item dropdown"
+            (mouseenter)="showDropdown = true"
+            (mouseleave)="showDropdown = false"
+            [class.show]="showDropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown"
+             [attr.aria-expanded]="showDropdown"
+             [class.show]="showDropdown">
+            İletişim
+          </a>
+          <ul class="dropdown-menu"
+              [class.show]="showDropdown"
+              aria-labelledby="iletisimDropdown">
+            <li class="dropdown-item"><strong>Telefon:</strong> +90 555 123 4567</li>
+            <li class="dropdown-item"><strong>E-posta:</strong> trakyasepeti&#64;trakya.com</li>
+          </ul>
+        </li>
+
+        <!-- Hakkımızda (SADECE hover'da kutu gözüksün) -->
+        <li class="nav-item position-relative hakkimizda-hover">
+          <span class="nav-link">Hakkımızda</span>
+          <div class="hover-box">Trakya Sepeti, yerel lezzetleri kullanıcılarla buluşturan bir dijital platformdur.</div>
+        </li>
+
+        <!-- Siparişler -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/orders" routerLinkActive="active">Siparişler</a>
+        </li>
+
+        <!-- Sepetim -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart" routerLinkActive="active">🛒 Sepetim</a>
+        </li>
+      </ul>
+
+      <!-- Sağ Menü: Giriş -->
+      <div class="d-flex align-items-center">
+        <button class="btn btn-login" type="button" (click)="goToLogin()">Giriş Yap</button>
       </div>
+
     </div>
-  </nav>
+  </div>
+</nav>

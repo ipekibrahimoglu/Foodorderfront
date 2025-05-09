@@ -1,11 +1,4 @@
-<!-- <h1>Welcome to {{ title }}</h1>
-<p>Hello {{ user }}</p>
 
-<ul>
-  <li *ngFor="let product of products">
-    {{ product.productName }}
-  </li>
-</ul> -->
 <!-- Logo ve Site Adı -->
 <div class="logo-bar">
   <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img">
@@ -15,7 +8,9 @@
 <div class="container">
   <app-navi></app-navi>
 
-  <div class="row">
+  <!-- her sayfada gözükmesin diye -->
+  <div *ngIf="!hideLayout" class="row">
+    
     <div class="col-md-3">
       <app-menu></app-menu> <!-- ✅ Menüyü buraya ekledik -->
     </div>
@@ -26,9 +21,9 @@
     <div class="col-md-3">
       <app-product></app-product>
     </div>
-    <div class="col-md-3">
+    <!-- <div class="col-md-3">
       <app-order></app-order>
-    </div>
+    </div> -->
 
   </div>
 </div>
