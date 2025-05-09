@@ -11,11 +11,7 @@ describe('CategoryComponent', () => {
       imports: [CategoryComponent]
     })
     .compileComponents();
-<<<<<<< HEAD
-
-=======
     
->>>>>>> e41cde0f8ff84c0833d990b427ad5cbbb641bb55
     fixture = TestBed.createComponent(CategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
-
+ 
   menus: Menu[] = [];
   currentMenu: Menu;
 

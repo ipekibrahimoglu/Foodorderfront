@@ -1,0 +1,59 @@
+.navbar-brand {
+    color: #c62828 !important;
+    font-style: italic;
+    font-weight: bold; 
+  }
+  .hakkimizda-hover .hover-box {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    color: #333;
+    padding: 10px;
+    width: 280px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    font-size: 0.875rem;
+    border-radius: 4px;
+  }
+  
+  .hakkimizda-hover:hover .hover-box {
+    display: block;
+  }
+ 
+  .btn-outline-success {
+    border-color: #c62828;
+    color: #c62828;
+    transition: box-shadow 0.3s ease;
+    outline: none;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: transparent; 
+    color: #c62828; 
+    box-shadow: 0 0 5px rgba(198, 40, 40, 0.5); 
+    cursor: pointer;
+  }
+
+  .btn-login {
+    background-color: transparent;
+    color: #333; 
+    border: 1px solid #c62828;
+    transition: box-shadow 0.3s ease;
+    outline: none;
+  }
+  
+  .btn-login:hover {
+    background-color: transparent;
+    color: #333;
+    box-shadow: 0 0 5px rgba(198, 40, 40, 0.4); 
+    cursor: pointer;
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #c62828; 
+    outline: none;
+  }

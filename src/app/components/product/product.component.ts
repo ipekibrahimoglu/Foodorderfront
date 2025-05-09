@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';     // ✅ eklendi
+import { CommonModule } from '@angular/common';
 import { Product } from '../../models/Product/product';
 import { HttpClient } from '@angular/common/http';
-import { productResponseModel } from '../../models/Product/productResponseModule';
-import { HttpClientModule } from '@angular/common/http';
+
+import { ListResponseModel } from '../../models/listResponseModel';
 
 
 @Component({
   standalone : true,
   selector: 'app-product',
-  imports: [CommonModule , HttpClientModule],
+  imports: [CommonModule ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit {
   products : Product[] = [];
   apiUrl :string = "https://localhost:7292/api/MenuItems";
-  productResponeModel : productResponseModel = {
-    data :this.products,
-    message : "",
-    success : true,
-  };
+  // productResponeModel : ListResponseModel<Product> = {
+  //   data :this.products,
+  //   message : " ",
+  //   success : true,
+  // };
   //productResponseModel : productResponseModelduct = {}
   constructor(private httpclient:HttpClient){//private dışardan ProductComponent oluşturulursa httpclient ın o component nesnesine ait bir filed olarak çıkamsını engeller ve burda this ile c# ta olmasa da parametre olarak verilen nesneye ulaşabiliriz sanki bir field gibi
    this.httpclient.get //constta yalnızca komponentin oluşum anında kullanılması için bağımlılıklar sağlanır
@@ -32,7 +32,7 @@ export class ProductComponent implements OnInit {
   }
   //dom a ekleme : componentin tarayıcıda görünür hale gelmesi
   getProducts(){
-      this.httpclient.get<productResponseModel>(this.apiUrl) //gelen datayı productresponse modeline map etme anlamı taşır
+      this.httpclient.get<ListResponseModel<Product>>(this.apiUrl) //gelen datayı productresponse modeline map etme anlamı taşır
       .subscribe((response)=>{this.products = response.data}) 
 
   }
