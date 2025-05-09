@@ -1,13 +1,11 @@
-
 <div *ngIf="isLoginPage(); else mainLayout">
   <router-outlet></router-outlet>
 </div>
 
-
 <ng-template #mainLayout>
   <!-- Logo ve Site Adı -->
   <div class="logo-bar">
-    <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img">
+    <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img" />
     <span class="site-title">Trakya Sepeti</span>
   </div>
 
@@ -16,27 +14,29 @@
 
     <div class="row">
       <div class="col-md-3">
-        <app-menu></app-menu> 
+        <app-menu></app-menu>
       </div>
 
-      <div class="col-md-3"> 
+      <div class="col-md-3">
         <app-menuitem></app-menuitem>
       </div>
-    
-      <div class="col-md-2">
-        <app-restaurant></app-restaurant> 
+
+      <div class="col-md-3">
+        <app-restaurant></app-restaurant>
       </div>
 
-      <div class="col-md-2">
-        <app-review></app-review> 
+      <div class="col-md-3">
+        <app-review></app-review>
       </div>
-    
-      <div class="col-md-2">
-        <!-- <app-order></app-order> -->
+      
+      <div *ngIf="isRestaurantOwner" id="menuFormSection" class="mt-4">
+        <app-menu-add></app-menu-add>
+      </div>
+
+      <div class="col-md-3">
+        <!-- <app-order></app-order>  -->
       </div>
     </div>
-
-    
 
     <router-outlet></router-outlet>
   </div>
