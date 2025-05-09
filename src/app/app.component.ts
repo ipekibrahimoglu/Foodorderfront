@@ -33,11 +33,12 @@ export class AppComponent {
       this.hideLayout = url.includes('/orders') || url.includes('/order-items') || url.includes('/cart');
     });
   }
-
-  // Giriş sayfası kontrolü
   isLoginPage(): boolean {
     return this.router.url === '/login';
   }
 }
-
+ 
+// function isLoginPage() {
+//   throw new Error('Function not implemented.');
+// }
 

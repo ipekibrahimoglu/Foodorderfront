@@ -1,6 +1,8 @@
-<!-- Tüm içerik yanyana dursun -->
 <div class="d-flex gap-4 justify-content-center align-items-start mt-4">
+<<<<<<< HEAD
   <!-- Sol: Menü listesi -->
+=======
+>>>>>>> main
   <div class="card" style="width: 400px">
     <div class="card-header bg-trakya text-white">
       <h4>Seçimini Yap!</h4>
@@ -12,7 +14,10 @@
           class="list-group-item text-center"
           (click)="setCurrentMenu(menu)"
         >
+<<<<<<< HEAD
           <!-- Kahvaltı görseli -->
+=======
+>>>>>>> main
           <img
             *ngIf="menu.name.toLowerCase().includes('kahvaltı')"
             src="assets/menuler/kahvalti.png"
@@ -20,7 +25,10 @@
             class="menu-img-top mb-2"
           />
 
+<<<<<<< HEAD
           <!-- Ciğermatik görseli -->
+=======
+>>>>>>> main
           <img
             *ngIf="menu.name.toLowerCase().includes('ciger')"
             src="assets/menuler/cigermatik.png"
@@ -28,7 +36,10 @@
             class="menu-img-top mb-2"
           />
 
+<<<<<<< HEAD
           <!-- Ana Yemek görseli -->
+=======
+>>>>>>> main
           <img
             *ngIf="menu.name.toLowerCase().includes('ana')"
             src="assets/menuler/anayemek2.png"
@@ -56,14 +67,11 @@
       <li *ngFor="let item of items">{{ item.name }} — {{ item.price }}</li>
     </ul>
 
-    <!-- Menüde hiç ürün yoksa gösterilecek alternatif -->
     <div *ngIf="currentMenu?.menuItems?.length === 0">
       Bu menüde ürün bulunmamaktadır.
     </div>
   </div>
 </div>
-
-<!-- yukardaki kodda restoranlar gösterilir ve restoran seçimi yapılarak restoranın menüleri görüntülenir -->
 
 <!-- <ul class="mt-2 ps-3 text-start">
   <li *ngFor="let item of menu.MenuItems">

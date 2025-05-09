@@ -8,8 +8,9 @@
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent"
-      ria-expanded="false"
-      aria-label="Toggle navigation">
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -33,13 +34,15 @@
             href="#"
             role="button"
             data-bs-toggle="dropdown"
-            aria-expanded="false">
+            aria-expanded="false"
+          >
             Restoranlar
           </a>
           <ul class="dropdown-menu">
             <li>
               <a class="dropdown-item" routerLink="/yeni-lezzet"
-                >Yeni Lezzet Restoranı</a>
+                >Yeni Lezzet Restoranı</a
+              >
             </li>
             <li>
               <a class="dropdown-item" routerLink="/cigermatik">Ciğermatik</a>
@@ -47,12 +50,17 @@
             <li><a class="dropdown-item" routerLink="/dish-up">Dish Up!</a></li>
           </ul>
         </li>
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> main
         <li
           class="nav-item dropdown"
           (mouseenter)="showDropdown = true"
           (mouseleave)="showDropdown = false"
-          [class.show]="showDropdown">
+          [class.show]="showDropdown"
+        >
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -60,12 +68,15 @@
             role="button"
             data-bs-toggle="dropdown"
             [attr.aria-expanded]="showDropdown"
-            [class.show]="showDropdown">
-            İletişim</a>
+            [class.show]="showDropdown"
+          >
+            İletişim
+          </a>
           <ul
             class="dropdown-menu"
             [class.show]="showDropdown"
-            aria-labelledby="iletisimDropdown">
+            aria-labelledby="iletisimDropdown"
+          >
             <li class="dropdown-item">
               <strong>Telefon:</strong> +90 555 123 4567
             </li>
@@ -84,19 +95,35 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/orders" routerLinkActive="active">Siparişler</a>
+          <a class="nav-link" routerLink="/orders" routerLinkActive="active"
+            >Siparişler</a
+          >
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cart" routerLinkActive="active">🛒 Sepetim</a>
+          <a class="nav-link" routerLink="/cart" routerLinkActive="active"
+            >🛒 Sepetim</a
+          >
         </li>
       </ul>
 
-      <div class="d-flex align-items-center">
-        <button class="btn btn-login" type="button" (click)="goToLogin()">
-          Giriş Yap
+      
+      <div
+        class="d-flex align-items-center ms-auto"
+        *ngIf="userRole; else loginBtn"
+      >
+        <button class="btn btn-danger" type="button" (click)="logout()">
+          Çıkış Yap
         </button>
       </div>
+
+      <ng-template #loginBtn>
+        <div class="d-flex align-items-center ms-auto">
+          <button class="btn btn-login" type="button" (click)="goToLogin()">
+            Giriş Yap
+          </button>
+        </div>
+      </ng-template>
     </div>
   </div>
 </nav>

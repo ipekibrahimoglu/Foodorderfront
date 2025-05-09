@@ -12,4 +12,5 @@ export interface Restaurant{
     user?: User  // JSON'da "user" alanı Owner'ı temsil ediyor
     menus?: Menu[];
     reviews?: Review[];
+
 }

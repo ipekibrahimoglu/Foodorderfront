@@ -26,12 +26,20 @@ export class NaviComponent implements OnInit{
   constructor(private router:Router){}
 
   ngOnInit(): void {
-    const userData = localStorage.getItem('user');
-    if (userData) {
+  const userData = localStorage.getItem('user');
+  if (userData) {
+    try {
       const user = JSON.parse(userData);
-      this.userRole = user.role;
+      if (user?.role) {
+        this.userRole = user.role;
+      } else {
+        this.userRole = null;
+      }
+    } catch (e) {
+      this.userRole = null;
     }
   }
+}
 
     goToLogin(){
     this.router.navigate(['/login']);
@@ -41,6 +49,18 @@ export class NaviComponent implements OnInit{
     event.preventDefault(); 
     console.log('Arama yapıldı:', this.searchTerm);
   }
+
+  logout() {
+  localStorage.removeItem('user'); 
+  this.userRole = null; 
+  this.router.navigate(['/menus']).then(() => {
+    window.location.reload();     
+  });
+}
+
+
+
+}
 
 
 }
