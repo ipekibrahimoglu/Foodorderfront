@@ -1,4 +1,3 @@
-
 <!-- Tüm içerik yanyana dursun -->
 <div class="d-flex gap-4 justify-content-center align-items-start mt-4">
 
@@ -13,20 +12,23 @@
             class="list-group-item text-center"
             (click)="setCurrentMenu(menu)">
           
+          <!-- Kahvaltı görseli -->
           <img *ngIf="menu.name.toLowerCase().includes('kahvaltı')" 
-              src="assets/menuler/kahvalti.png" 
-              alt="Kahvaltı" 
-              class="menu-img-top mb-2">
-          
+               src="assets/menuler/kahvalti.png" 
+               alt="Kahvaltı" 
+               class="menu-img-top mb-2">
+
+          <!-- Ciğermatik görseli -->
           <img *ngIf="menu.name.toLowerCase().includes('ciger')" 
-              src="assets/menuler/cigermatik.png" 
-              alt="Ciğermatik" 
-              class="menu-img-top mb-2">
-          
+               src="assets/menuler/cigermatik.png" 
+               alt="Ciğermatik" 
+               class="menu-img-top mb-2">
+
+          <!-- Ana Yemek görseli -->
           <img *ngIf="menu.name.toLowerCase().includes('ana')" 
-              src="assets/menuler/anayemek2.png" 
-              alt="Ana Yemek" 
-              class="menu-img-top mb-2">
+               src="assets/menuler/anayemek2.png" 
+               alt="Ana Yemek" 
+               class="menu-img-top mb-2">
 
           <h5 class="menu-title">{{ menu.name }}</h5>
           <p class="menu-description">{{ menu.description }}</p>
@@ -50,26 +52,30 @@
   </div>
 
 </div>
-<!-- yukardaki kodda restoranlar gösterilir ve restoran seçimi yapılarak restoranın menüleri görüntülen
- r-->>
+
+<!-- yukardaki kodda restoranlar gösterilir ve restoran seçimi yapılarak restoranın menüleri görüntülenir -->
+
+<!-- <ul class="mt-2 ps-3 text-start">
+  <li *ngFor="let item of menu.MenuItems">
+     {{ item.name }} - {{ item.price }} 
+  </li>
+</ul> -->
 
 <!-- Menü Listesi -->
 
-
 <!-- Tıklanan menünün detayları -->
 
-
-  <!-- <div *ngFor="let menu of menus">
+<!-- <div *ngFor="let menu of menus">
   <div *ngIf="menu.menuId == '44afdf60-2f1d-f011-91fd-2c98111a44ca' ; else noMenuFound"> -->
     <!-- Tek menu için ilk elemanı alıyoruz -->
     <!-- <div class="menu detayı"> -->
-      <!-- <h2>{{ menu.menuItems?.[0]?.menuId}}</h2>eger user owner sa aç bunları 
+      <!-- <h2>{{ menu.menuItems?.[0]?.menuId}}</h2> eğer user owner ise aç bunları 
       <p><strong></strong> {{ menu.menuItems?.[0]?.menuId }}</p> -->
       <!-- <p><strong>Menü adı :</strong> {{ menu.name }}</p>
       <p><strong>Açıklama:</strong> {{ menu.description}}</p>
-    <div *ngIf="menu.menuItems?.length">
-      <p><strong>İsim:</strong> {{ menu.menuItems?.[0]?.name }}</p>
-      <p><strong>Fiyat:</strong> {{ menu.menuItems?.[0]?.price }}</p>
+      <div *ngIf="menu.menuItems?.length">
+        <p><strong>İsim:</strong> {{ menu.menuItems?.[0]?.name }}</p>
+        <p><strong>Fiyat:</strong> {{ menu.menuItems?.[0]?.price }}</p>
       </div>
       <p><strong>Restoran:</strong> {{ menu.restaurant.address}}</p> -->
       <!-- <h4>Menü Öğeleri</h4>
@@ -80,14 +86,13 @@
           </li>
         </ul>
       </div>
-    </div> -->
-      <!-- <ng-template #noItems>
-        <p>Bu menüde ürün yok.</p>
-      </ng-template>
     </div>
   </div>
 </div> -->
 
+<!-- <ng-template #noItems>
+  <p>Bu menüde ürün yok.</p>
+</ng-template> -->
 
 <!-- Menü ID'ye göre (Eğer ayrı gösterilmesi istenirse) -->
 <!-- <div *ngIf="menuByIdLoaded" class="card mt-4 border-info">
@@ -97,13 +102,12 @@
   <div class="card-body">
     <p><strong>Ad:</strong> {{ menus[0]?.name }}</p>
     <p *ngIf="menus.length > 0">{{ menus[0].name }}</p>
-
     <p><strong>Restoran:</strong> {{ menus[0]?.restaurant?.name }}</p>
   </div>
 </div> -->
 
-<!-- Arama Sonuçları
-<div *ngIf="searchMenusLoaded" class="card mt-4 border-primary">
+<!-- Arama Sonuçları -->
+<!-- <div *ngIf="searchMenusLoaded" class="card mt-4 border-primary">
   <div class="card-header bg-primary text-white">
     Arama Sonuçları
   </div>
@@ -120,4 +124,3 @@
 <!-- <ng-template #noSearchResults>
   <div class="alert alert-secondary mt-2">Aramaya uygun menü bulunamadı.</div>
 </ng-template> -->
-

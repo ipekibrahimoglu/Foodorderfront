@@ -1,14 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router'; 
 import { FormsModule } from '@angular/forms';
-import {  Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   standalone:true,
   selector: 'app-navi',
-  imports: [CommonModule,RouterModule,FormsModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule ,
+    FormsModule
+  ],
   templateUrl: './navi.component.html',
-  styleUrl: './navi.component.css'
+  styleUrls: ['./navi.component.css']
 })
 export class NaviComponent {
   constructor(private router:Router){}
@@ -22,3 +29,4 @@ export class NaviComponent {
     console.log('Arama yapıldı:', this.searchTerm);
   }
 }
+
