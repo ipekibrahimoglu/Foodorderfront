@@ -4,7 +4,7 @@ export interface MenuItems {
     name: string;
     price: number;
     description: string;
-    imageUrl?: string; // Opsiyonel çünkü bazıları dönmüyor
+    imageUrl?: string;
     
   }
   

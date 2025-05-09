@@ -11,7 +11,7 @@ import { OrderItem } from '../models/Order/orderItem';
 export class OrderItemService {
 
   constructor(private httpClient: HttpClient) { }
-  apiUrl: string = 'https://localhost:7292/api/OrderItems';
+  apiUrl = 'https://localhost:7292/api/OrderItems';
 
 
   getOrderItems(): Observable<OrderItem[]>{
@@ -22,12 +22,14 @@ export class OrderItemService {
   addOrderItem(orderItem: OrderItem): Observable<OrderItem> {
     return this.httpClient.post<OrderItem>(`${this.apiUrl}`, orderItem);
   }
-  getOrderItemsByOrder(orderId: string): Observable<OrderItem[]> {
-    return this.httpClient.get<OrderItem[]>(`${this.apiUrl}/byorder/${orderId}`);
-  }
+
+  
   deleteOrderItem(orderItemId: string): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiUrl}/${orderItemId}`);
   }
   
+  getOrderItemsByOrderId(orderId: string): Observable<OrderItem[]> {
+    return this.httpClient.get<OrderItem[]>(`${this.apiUrl}/byorder/${orderId}`);
+  }
 }
 

@@ -10,9 +10,9 @@ export interface Order {
     orderDate: string; // ISO 8601 tarih formatı
     status: string;
     totalPrice:number;
-    user:User;
-    restaurant:Restaurant;
-    orderItems:OrderItem;
+    user?:User;
+    restaurant?:Restaurant;
+    orderItems:OrderItem[];
 
   }
   

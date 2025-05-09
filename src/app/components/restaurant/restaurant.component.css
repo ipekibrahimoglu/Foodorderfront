@@ -1,0 +1,21 @@
+table tr:hover {
+  background-color: #f0f0f0 !important;
+}
+
+.table-active {
+  background-color: #d4edda !important;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  border-left: 4px solid #28a745;
+}
+
+.selected-row {
+  background-color: #ffeaea !important;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  border-left: 4px solid #b02a37;
+}
+
+table tr:hover {
+  background-color: #fff5f5 !important;
+}

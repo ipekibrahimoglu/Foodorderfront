@@ -5,7 +5,7 @@ export interface User{
     userId: string;
     fullName: string;
     email: string;
-    role: string;
+    role: 'RestaurantOwner'|'Customer';
     phoneNumber?: string;
     passwordHash?: string;
     reviews?: Review[];

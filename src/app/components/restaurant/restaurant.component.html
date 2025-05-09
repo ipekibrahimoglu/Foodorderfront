@@ -1,33 +1,45 @@
-<h2>Restoranlar</h2>
+<!-- Başlık -->
+<h4 class="mb-4 text-center" style="color: #b02a37; font-weight: bold; border-bottom: 2px solid #b02a37; padding-bottom: 8px;">
+  Restoranlar
+</h4>
 
-  <table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-          <!--  <th>Phone Number</th>
-            <th>Address</th>
-            <th>Restaurant ID</th>
-            <th>Owner ID</th>-->
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let restaurant of restaurants" (click)="setCurrentRestaurant(restaurant)">
-            <td>{{restaurant.name}}</td>
-            <td>{{restaurant.description}}</td>
-           <!-- <td>{{restaurant.phoneNumber}}</td>
-            <td>{{restaurant.address}}</td> 
-            <td>{{restaurant.restaurantId}}
-            <td>{{restaurant.ownerId}}</td></td>-->
-        </tr>
-    </tbody>
+<!-- Restoran Tablosu -->
+<table class="table table-bordered text-center align-middle">
+  <thead style="background-color: #f8d7da; color: #721c24;">
+    <tr>
+      <th>Ad</th>
+       <!-- <th>Açıklama</th>  -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr 
+      *ngFor="let restaurant of restaurants" 
+      (click)="setCurrentRestaurant(restaurant)"
+      [class.selected-row]="restaurant === currentRestaurant"
+      style="cursor: pointer;"
+    >
+       <td>{{ restaurant.name }}</td> 
+      <!-- <td>{{ restaurant.description }}</td> -->
+    </tr>
+  </tbody>
 </table>
-<div *ngIf="currentRestaurant" class="card mt-4 p-3 border rounded">
-    <h3>Seçilen Restoran Detayı</h3>
-    <p><strong>Ad:</strong> {{ currentRestaurant.name }}</p>
-    <p><strong>Açıklama:</strong> {{ currentRestaurant.description }}</p>
-    <p><strong>Telefon:</strong> {{ currentRestaurant.phoneNumber }}</p>
-    <p><strong>Adres:</strong> {{ currentRestaurant.address}}</p>
-    <p><strong>Restoran ID:</strong> {{ currentRestaurant.restaurantId }}</p>
-    <p><strong>Sahip ID:</strong> {{ currentRestaurant.ownerId }}</p>
-  </div>
+
+<!-- Seçilen restoran detay kartı -->
+<div *ngIf="currentRestaurant" class="card mt-4 p-4 shadow-sm border border-secondary rounded bg-light">
+  <img 
+  [src]="getLogoForRestaurant(currentRestaurant.name)" 
+  alt="{{ currentRestaurant.name }} Logosu"
+  class="img-fluid mb-3"
+  style="height: 120px; object-fit: contain;"
+>
+
+  <h5 class="mb-3" style="color: #b02a37;">Seçilen Restoran</h5>
+  <ul class="list-unstyled mb-0">
+    <li><strong>Ad:</strong> {{ currentRestaurant.name }}</li>
+    <li><strong>Açıklama:</strong> {{ currentRestaurant.description }}</li>
+    <li><strong>Telefon:</strong> {{ currentRestaurant.phoneNumber }}</li>
+    <li><strong>Adres:</strong> {{ currentRestaurant.address }}</li>
+    <!-- <li><strong>Restoran ID:</strong> {{ currentRestaurant.restaurantId }}</li> -->
+    <!-- <li><strong>Sahip ID:</strong> {{ currentRestaurant.ownerId }}</li> -->
+  </ul>
+</div>

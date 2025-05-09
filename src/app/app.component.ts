@@ -1,54 +1,43 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';    
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NaviComponent } from "./components/navi/navi.component";
-import { CategoryComponent } from "./components/category/category.component";
 import { MenuComponent } from "./components/menu/menu.component";
-import { OrderComponent } from './components/order/order.component';
 import { RouterModule } from '@angular/router'; 
-import { IletisimComponent } from './components/iletisim/iletisim.component';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MenuItemComponent } from './components/menuitem/menuitem.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { ReviewComponent } from './components/review/review.component';
 import { filter } from 'rxjs';
-//import { LoginComponent } from './components/login/login.component';
-
-
+import { OrderItemsComponent } from "./components/orderitem/orderItems.components";
 
 @Component({
   selector: 'app-root',
   standalone: true,                                  
-  imports: [CommonModule, NaviComponent, MenuComponent, RouterOutlet, OrderComponent,IletisimComponent,RouterModule,
-    FormsModule, MenuItemComponent, RestaurantComponent, ReviewComponent],        
+  imports: [CommonModule, NaviComponent, MenuComponent, RouterOutlet, RouterModule,
+    FormsModule, MenuItemComponent, RestaurantComponent, ReviewComponent, OrderItemsComponent 
+    ],        
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'northwind';
   user: string = "ipek";
-  hideLayout:boolean =false;
+  hideLayout:boolean = false;
+  
   constructor(private router: Router) {
     this.router.events.pipe(
-      filter((event:any) => event instanceof NavigationEnd)
+      filter((event: any) => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       const url = event.urlAfterRedirects;
-      this.hideLayout = url.includes('/orders') || url.includes('/order-items') ||url.includes('/cart');
+      this.hideLayout = url.includes('/orders') || url.includes('/order-items') || url.includes('/cart');
     });
-      
   }
+
+  // Giriş sayfası kontrolü
   isLoginPage(): boolean {
     return this.router.url === '/login';
   }
-          
-
-
- 
-// function isLoginPage() {
-//   throw new Error('Function not implemented.');
-
-
-
 }
+
 

@@ -1,0 +1,15 @@
+.selected-row {
+  background-color: #ffeaea !important;
+  font-weight: 500;
+  border-left: 4px solid #b02a37;
+  transition: background-color 0.3s ease;
+}
+
+table tr:hover {
+  background-color: #fff5f5 !important;
+  transition: background-color 0.3s ease;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}

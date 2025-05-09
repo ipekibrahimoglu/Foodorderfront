@@ -4,18 +4,17 @@ import { Menu } from '../../models/Menu/menu';
 import { MenuService } from '../../menu.service';
 import { FormsModule } from '@angular/forms';
 
-//RESPONSE.Data ŞEKLİNDE KULLANILAMIŞTIR RESPONSE DİREKT MENU LİSTESİ DÖNMEKTEDİR
 @Component({
   standalone: true,
   selector: 'app-menu',
   imports: [CommonModule,FormsModule],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
- 
+
   menus: Menu[] = [];
-  currentMenu: Menu;
+  currentMenu: Menu | null=null;
 
   menusLoaded: boolean = false;
   menuByIdLoaded: boolean = false;
@@ -56,7 +55,7 @@ export class MenuComponent implements OnInit {
       this.menus=response;
       this.menusLoaded = true;
     },
-    error: err => {
+    error: (err) => {
       console.error("getMenus error:", err);
       this.menusLoaded = true;
     }
@@ -70,7 +69,15 @@ console.log("seçilen menü :" , this.currentMenu);
 
 }
 
- 
+   setCurrentMenu(menu: Menu): void {
+    if(this.currentMenu?.menuId===menu.menuId){
+      this.currentMenu=null;
+    }else{
+      this.currentMenu=menu;
+    }
+  }
+
+}
 
 // // // 2. Menü Ekleme (POST)
  //addMenu(newMenu: Menu) { // eklenecek menu olacak mı olacaksa nerede, şu an çalışmıyor ama parametre konarsa 
@@ -131,9 +138,3 @@ console.log("seçilen menü :" , this.currentMenu);
 // });
 // }
 
-  setCurrentMenu(menu: Menu): void {
-    this.currentMenu = menu;
-    console.log("secilen menuitem : ", menu);
-  }
-
-}

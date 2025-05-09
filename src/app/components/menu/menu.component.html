@@ -1,56 +1,66 @@
 <!-- Tüm içerik yanyana dursun -->
 <div class="d-flex gap-4 justify-content-center align-items-start mt-4">
-
   <!-- Sol: Menü listesi -->
-  <div class="card" style="width: 400px;">
+  <div class="card" style="width: 400px">
     <div class="card-header bg-trakya text-white">
       <h4>Seçimini Yap!</h4>
     </div>
     <div class="card-body">
       <ul class="list-group">
-        <li *ngFor="let menu of menus"
-            class="list-group-item text-center"
-            (click)="setCurrentMenu(menu)">
-          
+        <li
+          *ngFor="let menu of menus"
+          class="list-group-item text-center"
+          (click)="setCurrentMenu(menu)"
+        >
           <!-- Kahvaltı görseli -->
-          <img *ngIf="menu.name.toLowerCase().includes('kahvaltı')" 
-               src="assets/menuler/kahvalti.png" 
-               alt="Kahvaltı" 
-               class="menu-img-top mb-2">
+          <img
+            *ngIf="menu.name.toLowerCase().includes('kahvaltı')"
+            src="assets/menuler/kahvalti.png"
+            alt="Kahvaltı"
+            class="menu-img-top mb-2"
+          />
 
           <!-- Ciğermatik görseli -->
-          <img *ngIf="menu.name.toLowerCase().includes('ciger')" 
-               src="assets/menuler/cigermatik.png" 
-               alt="Ciğermatik" 
-               class="menu-img-top mb-2">
+          <img
+            *ngIf="menu.name.toLowerCase().includes('ciger')"
+            src="assets/menuler/cigermatik.png"
+            alt="Ciğermatik"
+            class="menu-img-top mb-2"
+          />
 
           <!-- Ana Yemek görseli -->
-          <img *ngIf="menu.name.toLowerCase().includes('ana')" 
-               src="assets/menuler/anayemek2.png" 
-               alt="Ana Yemek" 
-               class="menu-img-top mb-2">
+          <img
+            *ngIf="menu.name.toLowerCase().includes('ana')"
+            src="assets/menuler/anayemek2.png"
+            alt="Ana Yemek"
+            class="menu-img-top mb-2"
+          />
 
           <h5 class="menu-title">{{ menu.name }}</h5>
           <p class="menu-description">{{ menu.description }}</p>
-          <small class="menu-restaurant text-muted">Restoran: {{ menu.restaurant.name }}</small>
+          <small class="menu-restaurant text-muted"
+            >Restoran: {{ menu.restaurant.name }}</small
+          >
         </li>
       </ul>
     </div>
   </div>
 
   <!-- Sağ: Seçilen Menü Detayı -->
-  <div *ngIf="currentMenu" class="card p-4 card-center" style="width: 500px;">
-    <h4 class="text-center">Seçilen Menü: {{ currentMenu?.name }}</h4>
-    <p><strong>Açıklama:</strong> {{ currentMenu?.description }}</p>
-    <p><strong>Restoran:</strong> {{ currentMenu?.restaurant?.name }}</p>
+  <div *ngIf="currentMenu" class="card p-4 card-center" style="width: 500px">
+    <h4 class="text-center">Seçilen Menü: {{ currentMenu.name }}</h4>
+    <p><strong>Açıklama:</strong> {{ currentMenu.description }}</p>
+    <p><strong>Restoran:</strong> {{ currentMenu.restaurant.name }}</p>
 
-    <ul class="mt-2 ps-3">
-      <li *ngFor="let item of currentMenu.menuItems">
-        🍽 {{ item.name }} — {{ item.price }} ₺
-      </li>
+    <ul class="mt-2 ps-3" *ngIf="currentMenu?.menuItems as items">
+      <li *ngFor="let item of items">{{ item.name }} — {{ item.price }}</li>
     </ul>
-  </div>
 
+    <!-- Menüde hiç ürün yoksa gösterilecek alternatif -->
+    <div *ngIf="currentMenu?.menuItems?.length === 0">
+      Bu menüde ürün bulunmamaktadır.
+    </div>
+  </div>
 </div>
 
 <!-- yukardaki kodda restoranlar gösterilir ve restoran seçimi yapılarak restoranın menüleri görüntülenir -->
@@ -67,18 +77,18 @@
 
 <!-- <div *ngFor="let menu of menus">
   <div *ngIf="menu.menuId == '44afdf60-2f1d-f011-91fd-2c98111a44ca' ; else noMenuFound"> -->
-    <!-- Tek menu için ilk elemanı alıyoruz -->
-    <!-- <div class="menu detayı"> -->
-      <!-- <h2>{{ menu.menuItems?.[0]?.menuId}}</h2> eğer user owner ise aç bunları 
+<!-- Tek menu için ilk elemanı alıyoruz -->
+<!-- <div class="menu detayı"> -->
+<!-- <h2>{{ menu.menuItems?.[0]?.menuId}}</h2> eğer user owner ise aç bunları 
       <p><strong></strong> {{ menu.menuItems?.[0]?.menuId }}</p> -->
-      <!-- <p><strong>Menü adı :</strong> {{ menu.name }}</p>
+<!-- <p><strong>Menü adı :</strong> {{ menu.name }}</p>
       <p><strong>Açıklama:</strong> {{ menu.description}}</p>
       <div *ngIf="menu.menuItems?.length">
         <p><strong>İsim:</strong> {{ menu.menuItems?.[0]?.name }}</p>
         <p><strong>Fiyat:</strong> {{ menu.menuItems?.[0]?.price }}</p>
       </div>
       <p><strong>Restoran:</strong> {{ menu.restaurant.address}}</p> -->
-      <!-- <h4>Menü Öğeleri</h4>
+<!-- <h4>Menü Öğeleri</h4>
       <div *ngIf="menu.menuItems?.[0]?.length > 0; else noItems">
         <ul>
           <li *ngFor="let item of menus[0].menuItems">

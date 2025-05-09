@@ -27,10 +27,12 @@ constructor(private reviewService:ReviewService ){ }
     });
   }
    setCurrentReview(review:Review):void{
-      this.currentReview=review;
-      console.log("Seçilen yorum:",review);
+      if (this.currentReview?.reviewId===review.reviewId){
+        this.currentReview=null;
+      }else{
+        this.currentReview=review;
+      }
       }
 
 }
-
 
