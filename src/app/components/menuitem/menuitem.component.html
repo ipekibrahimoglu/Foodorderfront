@@ -1,5 +1,4 @@
-
- <!-- <ng-container *ngIf="menuItemsLoaded; else loading">
+<!-- <ng-container *ngIf="menuItemsLoaded; else loading">
     <ul *ngIf="menuItems.length > 0; else noItems" class="list-group">
       <li *ngFor="let item of menuItems" class="list-group-item">
         🍽️ {{ item.name }} — {{ item.price }} ₺
@@ -18,26 +17,20 @@
     <div class="alert alert-warning mt-3">Hiç MenuItem bulunamadı.</div>
   </ng-template>  -->
 
-
 <ul class="list-group">
-    <li
-      *ngFor="let menuitem of menuItems"
-      class="list-group-item"
-      (click)="setCurrentMenuItem(menuitem)"
-    >
-      {{ menuitem.name }}
-    </li>
-  </ul>
-  
-  <!-- Seçilen Menü Öğesi Detayı -->
-  <div *ngIf="currentMenuItem" class="overlay-center mt-4">
-    <div class="card p-4 card-center">
-      <h4 class="text-center">Seçilen Ürün: {{ currentMenuItem.name }}</h4>
-      <p><strong>Açıklama:</strong> {{ currentMenuItem.description }}</p>
-      <p><strong>Fiyat:</strong> {{ currentMenuItem.price }} ₺</p>
-      
-    </div>
+  <li
+    *ngFor="let menuitem of menuItems"
+    class="list-group-item"
+    (click)="setCurrentMenuItem(menuitem)"
+  >
+    {{ menuitem.name }}
+  </li>
+</ul>
+
+<div *ngIf="currentMenuItem" class="overlay-center mt-4">
+  <div class="card p-4 card-center">
+    <h4 class="text-center">Seçilen Ürün: {{ currentMenuItem.name }}</h4>
+    <p><strong>Açıklama:</strong> {{ currentMenuItem.description }}</p>
+    <p><strong>Fiyat:</strong> {{ currentMenuItem.price }} ₺</p>
   </div>
-  
-<!--yukarıdaki kodda restoranların menülerinde yer alan itemler seçilir ve içerikleri okunur fiyatı yazılır-->>
-  
+</div>

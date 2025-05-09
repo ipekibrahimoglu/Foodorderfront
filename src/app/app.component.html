@@ -1,9 +1,9 @@
-<!-- Eğer login sayfasındaysa sadece router-outlet göster -->
+
 <div *ngIf="isLoginPage(); else mainLayout">
   <router-outlet></router-outlet>
 </div>
 
-<!-- Anasayfa görünümü -->
+
 <ng-template #mainLayout>
   <!-- Logo ve Site Adı -->
   <div class="logo-bar">
@@ -16,7 +16,7 @@
 
     <div class="row">
       <div class="col-md-3">
-        <app-menu></app-menu> <!-- ✅ Menüyü buraya ekledik -->
+        <app-menu></app-menu> 
       </div>
 
       <div class="col-md-3"> 
@@ -32,22 +32,11 @@
       </div>
     
       <div class="col-md-2">
-        <app-order></app-order>
+        <!-- <app-order></app-order> -->
       </div>
     </div>
 
-    <div class="row mt-4">
-      <div class="col-md-3">
-        <app-menu></app-menu>
-      </div>
-      <div class="col-md-3">
-        <app-category></app-category>
-      </div>
-      <div class="col-md-3"></div>
-      <div class="col-md-3">
-        <app-order></app-order>
-      </div>
-    </div>
+    
 
     <router-outlet></router-outlet>
   </div>

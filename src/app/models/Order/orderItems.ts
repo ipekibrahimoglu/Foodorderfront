@@ -1,7 +1,7 @@
-import { Order } from "./orderResponseModel";
+import { Order } from "./order";
 import { MenuItems } from "../Menu/menuItems";
 
-export interface orderItems {
+export interface OrderItems {
   orderItemId: string;
   orderId: string;
   menuItemId: string;

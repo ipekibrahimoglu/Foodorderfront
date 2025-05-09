@@ -1,33 +1,62 @@
-<h2>Yorumlar</h2>
-<table class="table">
-  <thead>
+<h4
+  class="mb-4 text-center"
+  style="
+    color: #b02a37;
+    font-weight: bold;
+    border-bottom: 2px solid #b02a37;
+    padding-bottom: 8px;
+  "
+>
+  Yorumlar
+</h4>
+
+<table class="table table-bordered text-center align-middle">
+  <thead style="background-color: #f8d7da; color: #721c24">
     <tr>
-      <!--<th>reviewId</th>-->
-     <!-- <th>restaurantId</th>-->
-      <th>restaurant</th>
-      <!--<th>userId</th>-->
-      <th>comment</th>
-      <th>rating</th>
+      <th>Restoran</th>
+      <th>Yorum</th>
+      <th>Puan</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let review of reviews" (click)="setCurrentReview(review)">
-      <td>{{review.reviewId}}</td>
-      <td>{{review.restaurantId}} 
-      <td>{{review.restaurant}}</td>
-      <td>{{review.userId}}</td>
-      <td>{{review.comment}}</td>
-      <td>{{review.rating}}</td>
+    <tr
+      *ngFor="let review of reviews"
+      (click)="setCurrentReview(review)"
+      [class.selected-row]="review === currentReview"
+      style="cursor: pointer"
+    >
+      <td>{{ review.restaurant?.name || review.restaurantId }}</td>
+      <td>{{ review.comment }}</td>
+      <td>
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+          <span [style.color]="review.rating >= star ? '#ff8c00' : '#ccc'">
+            {{ review.rating >= star ? "★" : "☆" }}
+          </span>
+        </ng-container>
+      </td>
     </tr>
   </tbody>
 </table>
-<div *ngIf="currentReview" class="card mt-4 p-3 border rounded">
-  <h3>Seçilen Yorum Detayı</h3>
-  <p><strong>Ad:</strong> {{ currentReview.comment }}</p>
-  <p><strong>Açıklama:</strong> {{ currentReview.rating }}</p>
-  <p><strong>Adres:</strong> {{ currentReview.restaurant }}</p>
-  <p><strong>Telefon:</strong> {{ currentReview.reviewId }}</p>  
-  <p><strong>Sahip ID:</strong> {{ currentReview.reviewId }}</p>
-  <p><strong>Restoran ID:</strong> {{ currentReview.user }}</p>
-  <p><strong>Restoran ID:</strong> {{ currentReview.userId }}</p>
+
+<div
+  *ngIf="currentReview"
+  class="card mt-4 p-4 shadow-sm border border-secondary rounded bg-light"
+>
+  <h5 class="mb-3" style="color: #b02a37">Seçilen Yorum</h5>
+  <ul class="list-unstyled mb-0">
+    <li>
+      <strong>Restoran:</strong>
+      {{ currentReview.restaurant?.name || currentReview.restaurantId }}
+    </li>
+    <li>
+      <strong>Puan:</strong>
+      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+        <span [style.color]="currentReview.rating >= star ? '#ff8c00' : '#ccc'">
+          {{ currentReview.rating >= star ? "★" : "☆" }}
+        </span>
+      </ng-container>
+    </li>
+    <li><strong>Yorum:</strong> {{ currentReview.comment }}</li>
+    <li><strong>Kullanıcı:</strong> {{ currentReview.user?.fullName }}</li>
+  </ul>
 </div>

@@ -1,4 +1,3 @@
-// src/app/components/menu-item/menu-item.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,15 +10,12 @@ import { Menu } from '../../models/Menu/menu';
   selector: 'app-menuitem',
   imports: [CommonModule, FormsModule],
   templateUrl: './menuitem.component.html',
-  styleUrls: ['./menuitem.component.css']
+  styleUrls: ['./menuitem.component.css'],
 })
-
 export class MenuItemComponent implements OnInit {
-  
   menuItems: MenuItems[] = [];
 
-  currentMenuItem ?: MenuItems ;
-
+  currentMenuItem?: MenuItems;
 
   menuItemsLoaded = false;
   menuItemByIdLoaded = false;
@@ -32,7 +28,7 @@ export class MenuItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMenuItems();
-    //  test 
+    //  test
     // this.getMenuItemById('12ca0fd8-2f1d-f011-91fd-2c98111a44ca');
     // this.addMenuItem({ /* MenuItems objesi */ });
     // this.updateMenuItem({ /* Güncellenmiş objesi */ });
@@ -43,14 +39,14 @@ export class MenuItemComponent implements OnInit {
 
   getMenuItems(): void {
     this.menuItemService.getMenuItems().subscribe({
-      next: (response : any) => {
+      next: (response: any) => {
         this.menuItems = response;
         this.menuItemsLoaded = true;
       },
       error: (err: any) => {
         console.error('getMenuItems error:', err);
         this.menuItemsLoaded = true;
-      }
+      },
     });
   }
 
@@ -63,7 +59,7 @@ export class MenuItemComponent implements OnInit {
       error: (err: any) => {
         console.error('getMenuItemById error:', err);
         this.menuItemByIdLoaded = true;
-      }
+      },
     });
   }
 
@@ -73,7 +69,7 @@ export class MenuItemComponent implements OnInit {
         console.log('Eklendi:', response);
         this.getMenuItems();
       },
-      error: (err: any) => console.error('addMenuItem error:', err)
+      error: (err: any) => console.error('addMenuItem error:', err),
     });
   }
 
@@ -83,30 +79,30 @@ export class MenuItemComponent implements OnInit {
         console.log('Güncellendi:', response);
         this.getMenuItems();
       },
-      error: (err: any) => console.error('updateMenuItem error:', err)
+      error: (err: any) => console.error('updateMenuItem error:', err),
     });
   }
 
   deleteMenuItem(id: string): void {
     this.menuItemService.deleteMenuItem(id).subscribe({
-      next: (response:any) => {
+      next: (response: any) => {
         console.log('Silindi:', response);
         this.getMenuItems();
       },
-      error: (err: any) => console.error('deleteMenuItem error:', err)
+      error: (err: any) => console.error('deleteMenuItem error:', err),
     });
   }
 
   getMenuItemsByMenu(menuId: string): void {
     this.menuItemService.getMenuItemsByMenu(menuId).subscribe({
-      next: (response : any) => {
+      next: (response: any) => {
         this.menuItems = response;
         this.menuItemsByMenuLoaded = true;
       },
       error: (err: any) => {
         console.error('getMenuItemsByMenu error:', err);
         this.menuItemsByMenuLoaded = true;
-      }
+      },
     });
   }
 
@@ -124,13 +120,12 @@ export class MenuItemComponent implements OnInit {
       error: (err: any) => {
         console.error('searchMenuItems error:', err);
         this.searchMenuItemsLoaded = true;
-      }
+      },
     });
   }
 
   setCurrentMenuItem(menuitem: MenuItems): void {
     this.currentMenuItem = menuitem;
-    console.log("secilen menuitem : ", menuitem);
+    console.log('secilen menuitem : ', menuitem);
   }
-
 }

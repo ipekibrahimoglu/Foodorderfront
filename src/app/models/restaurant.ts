@@ -8,7 +8,8 @@ export interface Restaurant{
     description: string;
     address: string;
     phoneNumber?: string;
-    user?: User  // JSON'da "user" alanı Owner'ı temsil ediyor
+    user?: User  
     //menus?: Menu[];
     reviews?: Review[];
+
 }

@@ -1,36 +1,34 @@
-/* Menü görseli: Kare, yuvarlatılmış ve ortalanmış */
 .menu-img-top {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin: auto;
-  }
-  
-  .menu-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #c62828 !important;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: auto;
+}
 
-    margin-top: 5px;
-  }
-  
-  .menu-description {
-    font-size: 14px;
-    color: #4e342e;
-  }
-  
-  .menu-restaurant {
-    font-size: 13px;
-    font-style: italic;
-    color: #795548;
-  }
-  .bg-trakya {
-    background-color: #d84315; /* sıcak kırmızı ton */
-    color: white;
-  }
-  .card-header {
-    text-align: center;
-    font-style: italic;
-  }
-  
+.menu-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #c62828 !important;
+
+  margin-top: 5px;
+}
+
+.menu-description {
+  font-size: 14px;
+  color: #4e342e;
+}
+
+.menu-restaurant {
+  font-size: 13px;
+  font-style: italic;
+  color: #795548;
+}
+.bg-trakya {
+  background-color: #d84315;
+  color: white;
+}
+.card-header {
+  text-align: center;
+  font-style: italic;
+}

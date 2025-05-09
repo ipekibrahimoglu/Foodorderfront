@@ -33,12 +33,28 @@ export class RestaurantComponent implements OnInit{
   }
 
   setCurrentRestaurant(restaurant:Restaurant):void{
-    this.currentRestaurant=restaurant;
-    console.log("Seçilen restorant:",restaurant);
+    if (this.currentRestaurant?.restaurantId===restaurant.restaurantId){
+      this.currentRestaurant=null;
+    }else{
+      this.currentRestaurant=restaurant;
+    }
     }
     
-      
- 
-}
+   getLogoForRestaurant(name: string): string {
+  const key = name
+    .toLowerCase()
+    .normalize('NFD')         
+    .replace(/[\u0300-\u036f]/g, ''); 
 
+  if (key.includes('dish')) {
+    return 'assets/menuler/dishup.png';
+  } else if (key.includes('ciger')) {  
+    return 'assets/menuler/resim.png';
+  } else if (key.includes('lezzet')) {
+    return 'assets/menuler/yeniLezzet.png';
+  } else {
+    return 'assets/restoranlar/default.png';
+  }
+}
+}
 
