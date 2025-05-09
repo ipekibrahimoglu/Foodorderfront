@@ -5,5 +5,6 @@ export interface MenuItems {
     price: number;
     description: string;
     imageUrl?: string; // Opsiyonel çünkü bazıları dönmüyor
+    
   }
   

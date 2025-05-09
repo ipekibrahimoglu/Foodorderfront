@@ -1,4 +1,4 @@
-import { Restaurant } from "./restaurant";
+import { Restaurant } from "../restaurant";
 import { MenuItems } from "./menuItems";
 
 export interface Menu {
@@ -7,5 +7,6 @@ export interface Menu {
   name: string;
   description: string;
   restaurant: Restaurant;
-  MenuItems: MenuItems[];
+  menuItems?: MenuItems[];
+  
 }

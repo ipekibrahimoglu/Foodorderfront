@@ -1,1 +1,33 @@
-<p>restaurant works!</p>
+<h2>Restoranlar</h2>
+
+  <table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+          <!--  <th>Phone Number</th>
+            <th>Address</th>
+            <th>Restaurant ID</th>
+            <th>Owner ID</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let restaurant of restaurants" (click)="setCurrentRestaurant(restaurant)">
+            <td>{{restaurant.name}}</td>
+            <td>{{restaurant.description}}</td>
+           <!-- <td>{{restaurant.phoneNumber}}</td>
+            <td>{{restaurant.address}}</td> 
+            <td>{{restaurant.restaurantId}}
+            <td>{{restaurant.ownerId}}</td></td>-->
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="currentRestaurant" class="card mt-4 p-3 border rounded">
+    <h3>Seçilen Restoran Detayı</h3>
+    <p><strong>Ad:</strong> {{ currentRestaurant.name }}</p>
+    <p><strong>Açıklama:</strong> {{ currentRestaurant.description }}</p>
+    <p><strong>Telefon:</strong> {{ currentRestaurant.phoneNumber }}</p>
+    <p><strong>Adres:</strong> {{ currentRestaurant.address}}</p>
+    <p><strong>Restoran ID:</strong> {{ currentRestaurant.restaurantId }}</p>
+    <p><strong>Sahip ID:</strong> {{ currentRestaurant.ownerId }}</p>
+  </div>
