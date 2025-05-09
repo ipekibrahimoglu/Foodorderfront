@@ -1,10 +1,23 @@
 import { Routes } from '@angular/router';
-import { IletisimComponent } from './components/iletisim/iletisim.component';
-import { ProductComponent } from './components/product/product.component'; // örnek ana sayfa
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: 'anasayfa', pathMatch: 'full' },
-  { path: 'anasayfa', component: ProductComponent },
-  { path: 'iletisim', component: IletisimComponent },
-  { path: '**', redirectTo: '' }
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full' // ← ÖNEMLİ!
+  // },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./components/login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: 'iletisim',
+    loadComponent: () =>
+      import('./components/iletisim/iletisim.component').then(m => m.IletisimComponent)
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];

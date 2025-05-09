@@ -12,7 +12,7 @@ import { User } from '../../models/user';
 })
 export class UserComponent implements OnInit {
 
-user:User[]=[];
+userList:User[]=[];
 dataLoaded = false;
 
 //onInit ngOnInit metodunun çalıştırılması içindir.
@@ -26,8 +26,8 @@ dataLoaded = false;
   }
 
   getUser(){
-    this.userService.getUser().subscribe(response=>{
-      this.user=response.data
+    this.userService.getUsers().subscribe(response=>{
+      this.userList=response
       this.dataLoaded=true;
     })
     console.log();

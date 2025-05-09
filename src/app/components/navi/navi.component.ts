@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'; 
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navi',
@@ -15,6 +16,10 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent {
+  constructor(private router:Router){}
+  goToLogin(){
+    this.router.navigate(['/login']);
+  }
   showDropdown = false;
   searchTerm: string = '';
   onSearch(event: Event): void {

@@ -55,25 +55,13 @@
         </li>
         
 
-        
-        
       </ul>
 
       <div class="d-flex align-items-center ms-auto">
-        <form class="d-flex me-2" role="search" (submit)="onSearch($event)"S>
-          <input
-            class="form-control me-2 w-100"
-            style="min-width: 300px;"
-            type="search"
-            placeholder="Ara"
-            aria-label="Search"
-            [(ngModel)]="searchTerm"
-            name="search"
-          />
-          <button class="btn btn-outline-success" type="submit">Ara</button>
-        </form>
         
-        <button class="btn btn-login" type="button">Giriş Yap</button>
+        <button class="btn btn-login" type="button" (click)="goToLogin()">Giriş Yap</button>
+
+
       </div>
       
     </div>

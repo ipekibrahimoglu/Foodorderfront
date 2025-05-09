@@ -1,38 +1,32 @@
-<!-- <h1>Welcome to {{ title }}</h1>
-<p>Hello {{ user }}</p>
-
-<ul>
-  <li *ngFor="let product of products">
-    {{ product.productName }}
-  </li>
-</ul> -->
-<!-- Logo ve Site Adı -->
-<div class="logo-bar">
-  <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img">
-  <span class="site-title">Trakya Sepeti</span>
-</div>
-
-<div class="container">
-  <app-navi></app-navi>
-  
-
-  <div class="row">
-    <div class="col-md-3">
-      <app-menu></app-menu> <!-- Menüyü buraya ekledik -->
-    </div>
-    <div class="col-md-3">
-      <app-category></app-category>
-    </div>
-
-    <div class="col-md-3">
-      <app-product></app-product>
-    </div>
-    <div class="col-md-3">
-      <app-order></app-order>
-    </div>
-
-  </div>
+<!-- Eğer login sayfasındaysa sadece router-outlet göster -->
+<div *ngIf="isLoginPage(); else mainLayout">
   <router-outlet></router-outlet>
 </div>
 
+<!-- Anasayfa görünümü -->
+<ng-template #mainLayout>
+  <!-- Logo ve Site Adı -->
+  <div class="logo-bar">
+    <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img">
+    <span class="site-title">Trakya Sepeti</span>
+  </div>
 
+  <div class="container">
+    <app-navi></app-navi>
+
+    <div class="row">
+      <div class="col-md-3">
+        <app-menu></app-menu>
+      </div>
+      <div class="col-md-3">
+        <app-category></app-category>
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <app-order></app-order>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

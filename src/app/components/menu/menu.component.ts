@@ -14,6 +14,7 @@ import { MenuResponseModel } from '../../models/Menu/menuResponseModel';
 export class MenuComponent implements OnInit {
 
   menus: Menu[] = [];
+  menusLoaded: boolean = false;
   apiUrl: string = 'http://localhost:5161/api/Menus';
   menuResponseModel: MenuResponseModel = {
     data: this.menus,
@@ -35,15 +36,20 @@ export class MenuComponent implements OnInit {
 
 
  // 1. Tüm Menüler
-getMenus() {
-  this.httpclient.get<Menu[]>(`${this.apiUrl}`).subscribe({ // subscribe olmak isteyen ap
-    next: res => {
+ getMenus() {
+  this.httpclient.get<Menu[]>(this.apiUrl).subscribe(
+    (res) => {
       this.menus = res;
+      this.menusLoaded = true;
       console.log("Tüm menüler:", res);
     },
-    error: err => console.error("Menü çekme hatası:", err)
-  });
+    (err) => {
+      console.error("Menü çekme hatası:", err);
+      this.menusLoaded = false;
+    }
+  );
 }
+
 
 // 2. Menü Ekleme (POST)
 addMenu(newMenu: Menu) {

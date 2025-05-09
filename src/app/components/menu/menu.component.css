@@ -28,4 +28,8 @@
     background-color: #d84315; /* sıcak kırmızı ton */
     color: white;
   }
-    
+  .card-header {
+    text-align: center;
+    font-style: italic;
+  }
+  
