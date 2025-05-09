@@ -8,4 +8,5 @@ export interface Review{
     rating: number; 
     user?: User;
     restaurant?: Restaurant;
+    comment:string;
   }

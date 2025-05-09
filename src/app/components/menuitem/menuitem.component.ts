@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MenuItems } from '../../models/Menu/menuItems';
-import { MenuItemService } from '../../menuitem.service';
+import { MenuItemService } from '../../menu-item.service';
 import { Menu } from '../../models/Menu/menu';
 
 @Component({

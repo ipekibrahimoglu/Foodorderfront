@@ -2,10 +2,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th>reviewId</th>
-      <th>restaurantId</th>
+      <!--<th>reviewId</th>-->
+     <!-- <th>restaurantId</th>-->
       <th>restaurant</th>
-      <th>userId</th>
+      <!--<th>userId</th>-->
       <th>comment</th>
       <th>rating</th>
     </tr>
@@ -13,7 +13,7 @@
   <tbody>
     <tr *ngFor="let review of reviews" (click)="setCurrentReview(review)">
       <td>{{review.reviewId}}</td>
-      <td>{{review.restaurantId}}</td>   
+      <td>{{review.restaurantId}} 
       <td>{{review.restaurant}}</td>
       <td>{{review.userId}}</td>
       <td>{{review.comment}}</td>

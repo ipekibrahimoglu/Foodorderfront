@@ -38,9 +38,9 @@
 
   <!-- Sağ: Seçilen Menü Detayı -->
   <div *ngIf="currentMenu" class="card p-4 card-center" style="width: 500px;">
-    <h4 class="text-center">Seçilen Menü: {{ currentMenu.name }}</h4>
-    <p><strong>Açıklama:</strong> {{ currentMenu.description }}</p>
-    <p><strong>Restoran:</strong> {{ currentMenu.restaurant?.name }}</p>
+    <h4 class="text-center">Seçilen Menü: {{ currentMenu?.name }}</h4>
+    <p><strong>Açıklama:</strong> {{ currentMenu?.description }}</p>
+    <p><strong>Restoran:</strong> {{ currentMenu?.restaurant?.name }}</p>
 
     <ul class="mt-2 ps-3">
       <li *ngFor="let item of currentMenu.menuItems">

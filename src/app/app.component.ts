@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';  // ✅ BU SATIRI EKLE
 import { FormsModule } from '@angular/forms';
 import { MenuItems } from './models/Menu/menuItems';
 import { MenuItemComponent } from './components/menuitem/menuitem.component';
+import { RestaurantComponent } from './components/restaurant/restaurant.component';
+import { ReviewComponent } from './components/review/review.component';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +24,9 @@ import { MenuItemComponent } from './components/menuitem/menuitem.component';
     OrderComponent,
     MenuComponent,
     FormsModule,
-    MenuItemComponent
+    MenuItemComponent,
+    RestaurantComponent,
+    ReviewComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
