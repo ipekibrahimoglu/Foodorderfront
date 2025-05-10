@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderItem } from '../models/Order/orderItem';
+import { CreateOrderItemDto } from '../models/Order/createOrderItemDto';
 
 
 @Injectable({
@@ -19,8 +20,8 @@ export class OrderItemService {
       
   }
   
-  addOrderItem(orderItem: OrderItem): Observable<OrderItem> {
-    return this.httpClient.post<OrderItem>(`${this.apiUrl}`, orderItem);
+  addOrderItem(dto: CreateOrderItemDto): Observable<OrderItem> {
+    return this.httpClient.post<OrderItem>(this.apiUrl, dto);
   }
 
   

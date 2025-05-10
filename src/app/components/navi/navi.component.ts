@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router'; 
-=======
-import { RouterModule } from '@angular/router';
->>>>>>> origin/elifHtml
+
+
+
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navi',
   standalone: true,
-<<<<<<< HEAD
   imports: [
     CommonModule,
     RouterModule ,
@@ -19,9 +17,6 @@ import { Router } from '@angular/router';
     RouterLink,
     RouterLinkActive
   ],
-=======
-  imports: [CommonModule, RouterModule, FormsModule],
->>>>>>> origin/elifHtml
   templateUrl: './navi.component.html',
   styleUrls: ['./navi.component.css'],
 })
@@ -72,13 +67,10 @@ export class NaviComponent implements OnInit {
     }
   }
 }
-<<<<<<< HEAD
 
 
 
-}
 
 
 
-=======
->>>>>>> origin/elifHtml
+

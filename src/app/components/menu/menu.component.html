@@ -1,4 +1,5 @@
 <div class="d-flex gap-4 justify-content-center align-items-start mt-4">
+  <!-- Sol: Menü Listesi -->
   <div class="card" style="width: 400px">
     <div class="card-header bg-trakya text-white">
       <h4>Seçimini Yap!</h4>
@@ -10,20 +11,19 @@
           class="list-group-item text-center"
           (click)="setCurrentMenu(menu)"
         >
+          <!-- Görseller -->
           <img
             *ngIf="menu.name.toLowerCase().includes('kahvaltı')"
             src="assets/menuler/kahvalti.png"
             alt="Kahvaltı"
             class="menu-img-top mb-2"
           />
-
           <img
             *ngIf="menu.name.toLowerCase().includes('ciger')"
             src="assets/menuler/cigermatik.png"
             alt="Ciğermatik"
             class="menu-img-top mb-2"
           />
-
           <img
             *ngIf="menu.name.toLowerCase().includes('ana')"
             src="assets/menuler/anayemek2.png"
@@ -33,9 +33,9 @@
 
           <h5 class="menu-title">{{ menu.name }}</h5>
           <p class="menu-description">{{ menu.description }}</p>
-          <small class="menu-restaurant text-muted"
-            >Restoran: {{ menu.restaurant.name }}</small
-          >
+          <small class="menu-restaurant text-muted">
+            Restoran: {{ menu.restaurant.name }}
+          </small>
         </li>
       </ul>
     </div>
@@ -47,15 +47,55 @@
     <p><strong>Açıklama:</strong> {{ currentMenu.description }}</p>
     <p><strong>Restoran:</strong> {{ currentMenu.restaurant.name }}</p>
 
-    <ul class="mt-2 ps-3" *ngIf="currentMenu?.menuItems as items">
-      <li *ngFor="let item of items">{{ item.name }} — {{ item.price }}</li>
+    <!-- Menü Öğelerini Listele ve Seç -->
+    <ul class="list-group mt-2">
+      <li
+        *ngFor="let item of currentMenu.menuItems || []"
+        class="list-group-item d-flex justify-content-between align-items-center"
+        [class.active]="currentItem?.menuItemId === item.menuItemId"
+        (click)="currentItem = item"
+      >
+        <span>{{ item.name }}</span>
+        <strong>{{ item.price | currency:'TRY':'symbol':'1.2-2' }}</strong>
+      </li>
     </ul>
 
-    <div *ngIf="currentMenu?.menuItems?.length === 0">
+    <!-- Ürün Yoksa Uyarısı -->
+    <div *ngIf="!(currentMenu.menuItems?.length > 0)" class="mt-2">
       Bu menüde ürün bulunmamaktadır.
+    </div>
+
+    <!-- Sepete Ekle / Gelince Haber Ver -->
+    <div class="mt-3">
+      <button
+        *ngIf="currentMenu.menuItems?.length > 0"
+        class="btn btn-success w-100"
+        [disabled]="!currentItem"
+        (click)="addToCart(currentItem!)"
+      >
+        Sepete Ekle
+      </button>
+
+      <button
+        *ngIf="!(currentMenu.menuItems?.length > 0)"
+        class="btn btn-warning w-100"
+        (click)="notifyMe(currentMenu!)"
+      >
+        Gelince Haber Ver
+      </button>
+    </div>
+
+    <!-- Başarı Mesajı -->
+    <div
+      *ngIf="successMessage"
+      class="alert alert-success text-center mt-3"
+      role="alert"
+    >
+      {{ successMessage }}
     </div>
   </div>
 </div>
+
 
 <!-- <ul class="mt-2 ps-3 text-start">
   <li *ngFor="let item of menu.MenuItems">

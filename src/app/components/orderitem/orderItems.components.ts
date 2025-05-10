@@ -41,8 +41,8 @@ export class OrderItemsComponent implements OnInit {
     });
   }
  
-  addOrderItem(orderItem: OrderItem): void {
-    this.orderItemService.addOrderItem(orderItem).subscribe((response:any)  => {
+  addOrderItem(item: OrderItem): void {
+    this.orderItemService.addOrderItem(item).subscribe((response:any)  => {
       this.addedOrderItem = response;
     });
   }

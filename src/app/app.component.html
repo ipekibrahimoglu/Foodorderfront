@@ -1,48 +1,47 @@
+<!-- app.component.html -->
+
+<!-- Login sayfasıysa yalnızca router-outlet -->
 <div *ngIf="isLoginPage(); else mainLayout">
   <router-outlet></router-outlet>
 </div>
 
 <ng-template #mainLayout>
-  <!-- Logo ve Site Adı -->
+  <!-- Logo Bar -->
   <div class="logo-bar">
     <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img" />
     <span class="site-title">Trakya Sepeti</span>
   </div>
 
-  <div class="container">
-    <app-navi></app-navi>
+  <!-- Navbar -->
+  <app-navi></app-navi>
 
+  <!-- İçerik -->
+  <div class="container mt-4">
     <div class="row">
-      <div class="col-md-3">
-        <app-menu></app-menu>
-      </div>
+      <!-- Sidebar bölgesi: hideLayout true ise gizle -->
+      <ng-container *ngIf="!hideLayout">
+        <div class="col-md-3">
+          <app-menu></app-menu>
+        </div>
+        <div class="col-md-3">
+          <app-menuitem></app-menuitem>
+        </div>
+        <div class="col-md-3">
+          <app-restaurant></app-restaurant>
+        </div>
+        <div class="col-md-3">
+          <app-review></app-review>
+        </div>
+        <!-- Menü ekle formu da sidebar’ın bir parçasıysa: -->
+        <div *ngIf="isRestaurantOwner && isMenuAddPage()" class="col-12 mt-4">
+          <app-menu-add></app-menu-add>
+        </div>
+      </ng-container>
 
-      <div class="col-md-3">
-        <app-menuitem></app-menuitem>
-      </div>
-
-      <div class="col-md-3">
-        <app-restaurant></app-restaurant>
-      </div>
-
-      <div class="col-md-3">
-        <app-review></app-review>
-      </div>
-<<<<<<< HEAD
-    
-      <div class="col-md-2">
-=======
-      
-      <div *ngIf="isRestaurantOwner" id="menuFormSection" class="mt-4">
-        <app-menu-add></app-menu-add>
-      </div>
-
-      <div class="col-md-3">
-        <!-- <app-order></app-order>  -->
->>>>>>> origin/elifHtml
+      <!-- Ana router-outlet bölgesi -->
+      <div [class.col-md-9]="!hideLayout" [class.col-12]="hideLayout">
+        <router-outlet></router-outlet>
       </div>
     </div>
-
-    <router-outlet></router-outlet>
   </div>
 </ng-template>
