@@ -60,30 +60,32 @@ userRole: any;
     });
   }
 
-  setCurrentMenus(menu: Menu) {
-    this.currentMenu = menu;
-    console.log('seçilen menü :', this.currentMenu);
-  }
+   setCurrentMenus(menu: Menu) {
+     this.currentMenu = menu;
+     console.log('seçilen menü :', this.currentMenu);
+   }
 
- setCurrentMenu(menu: Menu): void {
-  if (this.currentMenu?.menuId === menu.menuId) {
-    // Aynı menüye tıklanırsa gizle
+   setCurrentMenu(menu: Menu): void {
+   if (this.currentMenu?.menuId === menu.menuId) {
+     // Aynı menüye tıklanırsa gizle
     this.currentMenu = null;
-  } else {
-    // Farklı menüye tıklanırsa göster
-    this.currentMenu = menu;
+   } else {
+  //   // Farklı menüye tıklanırsa göster
+      this.currentMenu = menu;
+   }
+
   }
 
+   addToCart(currentMenu:Menu){console.log(currentMenu)}
 
-
-  addToCart(currentMenu:Menu){console.log(currentMenu )}
-  notifyMe(currentMenu: Menu): void {
-    // Burada backend’e bildirim isteği gönderebilir ya da basitçe alert kullanabilirsin.
-    // Örneğin:
+   notifyMe(currentMenu: Menu): void {
+     // Burada backend’e bildirim isteği gönderebilir ya da basitçe alert kullanabilirsin.
+//    // Örneğin:
     alert(`${currentMenu.name} menüsüne yeni ürün eklendiğinde size haber verilecek!`);
-}
-}
+ }
 
+}
+   
   // // // 2. Menü Ekleme (POST)
   //addMenu(newMenu: Menu) { // eklenecek menu olacak mı olacaksa nerede, şu an çalışmıyor ama parametre konarsa
   //çalışır
@@ -111,10 +113,10 @@ userRole: any;
   //   });
   //  }
 
-  // deleteMenu(id: string) {
-  //    this.menuService.deleteMenu(id).subscribe();
-   }
-
+  //  deleteMenu(id: string) {
+  //     this.menuService.deleteMenu(id).subscribe();
+   
+  //  }
   //}
   //  // Restorana göre menüleri getir (GET /byrestaurant/{restaurantId})
   //  getMenusByRestaurant(restaurantId: string) {
@@ -143,5 +145,3 @@ userRole: any;
   //   }
   // });
   // }
-
- 
