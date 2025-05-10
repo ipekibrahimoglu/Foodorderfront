@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Menu } from '../../models/Menu/menu';
 import { MenuService } from '../../menu.service';
 import { FormsModule } from '@angular/forms';
+import { ReviewComponent } from "../review/review.component";
+import { RestaurantComponent } from "../restaurant/restaurant.component";
 
 @Component({
   standalone: true,
   selector: 'app-menu',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReviewComponent, RestaurantComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
@@ -63,14 +65,24 @@ userRole: any;
     console.log('seçilen menü :', this.currentMenu);
   }
 
-   setCurrentMenu(menu: Menu): void {
-    if (this.currentMenu?.menuId === menu.menuId) {
-      this.currentMenu = null;
-    } else {
-      this.currentMenu = menu;
-    }
+ setCurrentMenu(menu: Menu): void {
+  if (this.currentMenu?.menuId === menu.menuId) {
+    // Aynı menüye tıklanırsa gizle
+    this.currentMenu = null;
+  } else {
+    // Farklı menüye tıklanırsa göster
+    this.currentMenu = menu;
   }
 
+
+
+  addToCart(currentMenu:Menu){console.log(currentMenu )}
+  notifyMe(currentMenu: Menu): void {
+    // Burada backend’e bildirim isteği gönderebilir ya da basitçe alert kullanabilirsin.
+    // Örneğin:
+    alert(`${currentMenu.name} menüsüne yeni ürün eklendiğinde size haber verilecek!`);
+}
+}
 
   // // // 2. Menü Ekleme (POST)
   //addMenu(newMenu: Menu) { // eklenecek menu olacak mı olacaksa nerede, şu an çalışmıyor ama parametre konarsa

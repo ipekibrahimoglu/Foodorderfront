@@ -33,6 +33,7 @@ export const appRoutes: Routes = [
         (m) => m.MenuAddComponent
       ),
   },
+  
   {
     path: 'payments',
     loadComponent: () =>
