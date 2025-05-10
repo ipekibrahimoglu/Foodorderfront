@@ -1,6 +1,7 @@
-<div class="d-flex gap-4 justify-content-start align-items-start mt-4 flex-nowrap">
-  <!-- Sol: Menü Seçim Kartı -->
-  <div class="card flex-shrink-0" style="width: 300px; min-width: 280px;">
+<div
+  class="d-flex gap-4 justify-content-start align-items-start mt-4 flex-nowrap"
+>
+  <div class="card flex-shrink-0" style="width: 300px; min-width: 280px">
     <div class="card-header bg-trakya text-white">
       <h4>Seçimini Yap!</h4>
     </div>
@@ -12,13 +13,13 @@
           (click)="setCurrentMenu(menu)"
         >
           <img
-            *ngIf="menu.name.toLowerCase().includes('kahvaltı')"
+            *ngIf="menu.name.toLowerCase().includes('kahval')"
             src="assets/menuler/kahvalti.png"
             alt="Kahvaltı"
             class="menu-img-top mb-2"
           />
           <img
-            *ngIf="menu.name.toLowerCase().includes('ciger')"
+            *ngIf="menu.name.toLowerCase().includes('ci')"
             src="assets/menuler/cigermatik.png"
             alt="Ciğermatik"
             class="menu-img-top mb-2"
@@ -32,15 +33,60 @@
 
           <h5 class="menu-title">{{ menu.name }}</h5>
           <p class="menu-description">{{ menu.description }}</p>
-          <small class="menu-restaurant text-muted">Restoran: {{ menu.restaurant.name }}</small>
+          <small class="menu-restaurant text-muted"
+            >Restoran: {{ menu.restaurant.name }}</small
+          >
         </li>
       </ul>
     </div>
   </div>
 
-  <!-- Sağ: Seçilen Menü Detayı -->
-  <div *ngIf="currentMenu" class="card flex-grow-1 p-4" style="min-width: 400px;">
-    <h4 class="text-center">Seçilen Menü: {{ currentMenu.name }}</h4>
+  <div
+    *ngIf="currentMenu"
+    class="card flex-grow-1 p-4"
+    style="min-width: 400px"
+  >
+    <img
+      *ngIf="
+        currentMenu?.name && currentMenu.name.toLowerCase().includes('kahval')
+      "
+      src="assets/menuler/kahvalticeylan.jpg"
+      class="img-fluid"
+      alt="kahvaltı"
+      style="height: 160px; object-fit: contain"
+    />
+    <img
+      *ngIf="currentMenu?.name && currentMenu.name.toLowerCase().includes('ci')"
+      src="assets/menuler/cigeradnan.jpg"
+      class="img-fluid"
+      alt="ciğer"
+      style="height: 160px; object-fit: contain"
+    />
+    <img
+      *ngIf="
+        currentMenu?.name && currentMenu.name.toLowerCase().includes('ana')
+      "
+      src="assets/menuler/anayemek.jpeg"
+      class="img-fluid"
+      alt="ana yemek"
+      style="height: 160px; object-fit: contain"
+    />
+    <img
+      *ngIf="
+        currentMenu?.name &&
+        !(
+          currentMenu.name.toLowerCase().includes('kahval') ||
+          currentMenu.name.toLowerCase().includes('ci') ||
+          currentMenu.name.toLowerCase().includes('ana')
+        )
+      "
+      src="assets/restoranlar/default.png"
+      class="img-fluid"
+      alt="varsayılan"
+      style="height: 220px; object-fit: cover"
+    />
+
+    <h4 class="text-center">Menü: {{ currentMenu.name }}</h4>
     <p><strong>Açıklama:</strong> {{ currentMenu.description }}</p>
     <p><strong>Restoran:</strong> {{ currentMenu.restaurant.name }}</p>
 
@@ -52,12 +98,24 @@
       Bu menüde ürün bulunmamaktadır.
     </div>
 
-    <ng-container *ngIf="(currentMenu?.menuItems?.length ?? 0) > 0; else notifyMeTemplate">
-      <button class="btn btn-success mt-3 w-100" (click)="addToCart(currentMenu!)">Sepete Ekle</button>
+    <ng-container
+      *ngIf="(currentMenu?.menuItems?.length ?? 0) > 0; else notifyMeTemplate"
+    >
+      <button
+        class="btn btn-success mt-3 w-100"
+        (click)="addToCart(currentMenu!)"
+      >
+        Sepete Ekle
+      </button>
     </ng-container>
 
     <ng-template #notifyMeTemplate>
-      <button class="btn btn-warning mt-3 w-100" (click)="notifyMe(currentMenu!)">Gelince Haber Ver</button>
+      <button
+        class="btn btn-warning mt-3 w-100"
+        (click)="notifyMe(currentMenu!)"
+      >
+        Gelince Haber Ver
+      </button>
     </ng-template>
   </div>
 </div>
