@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Menu } from '../../models/Menu/menu';
-import { MenuService } from '../../menu.service';
+import { MenuService } from '../../services/menu.service';
 import { FormsModule } from '@angular/forms';
 import { ReviewComponent } from "../review/review.component";
 import { RestaurantComponent } from "../restaurant/restaurant.component";
@@ -9,7 +9,7 @@ import { RestaurantComponent } from "../restaurant/restaurant.component";
 @Component({
   standalone: true,
   selector: 'app-menu',
-  imports: [CommonModule, FormsModule, ReviewComponent, RestaurantComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })

@@ -1,13 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { RestaurantResponseModel } from "../../models/restaurantResponseModel";
 import { HttpClient } from "@angular/common/http";
 import { Restaurant } from "../../models/restaurant";
-import { RestaurantService } from "../../restaurant.service";
 import { ReviewFormComponent } from "../add-review/add-review.component";
 import { Review } from "../../models/review";
-import { ReviewService } from "../../review.service";
 import { Router, RouterModule } from '@angular/router';
+import { RestaurantService } from "../../services/restaurant.service";
+import { ReviewService } from "../../services/review.service";
 
 @Component({
   selector: 'app-restaurant',

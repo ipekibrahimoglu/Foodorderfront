@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReviewService } from '../../review.service';
 import { Review } from '../../models/review';
 import { Input, Output, EventEmitter } from '@angular/core';
+import { ReviewService } from '../../services/review.service';
 
 
 @Component({

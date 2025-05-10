@@ -6,38 +6,14 @@ import { RestaurantComponent } from './components/restaurant/restaurant.componen
 import { ReviewComponent } from './components/review/review.component';
 
 export const appRoutes: Routes = [
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./components/login/login.component').then(
-        (m) => m.LoginComponent
-      ),
-  },
-  {
-    path: 'iletisim',
-    loadComponent: () =>
-      import('./components/iletisim/iletisim.component').then(
-        (m) => m.IletisimComponent
-      ),
-  },
-  
+  { path: 'login',loadComponent: () =>import('./components/login/login.component').then((m) => m.LoginComponent ),},
+  {path: 'iletisim',loadComponent: () =>import('./components/iletisim/iletisim.component').then( (m) => m.IletisimComponent),},
   { path: '', redirectTo: 'menus', pathMatch: 'full' },
-  // { path: 'menus', component: MenuComponent },
   { path: 'menuitems', component: MenuItemComponent },
   { path: 'restaurants', component: RestaurantComponent },
   { path: 'reviews', component: ReviewComponent },
-  {
-    path: 'menu-ekle',
-    loadComponent: () =>
-      import('./components/menu-add/menu-add.component').then(
-        (m) => m.MenuAddComponent
-      ),
-  },
-  {
-    path: 'restaurants/:id/add-review',
-    loadComponent: () =>
-      import('./components/add-review/add-review.component').then(m => m.ReviewFormComponent)
-  },
+  {path: 'menu-ekle',loadComponent: () =>import('./components/menu-add/menu-add.component').then((m) => m.MenuAddComponent),},
+  {path: 'restaurants/:id/add-review',loadComponent: () => import('./components/add-review/add-review.component').then(m => m.ReviewFormComponent)},
   
   {
     path: '**',

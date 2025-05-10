@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { orderItems } from '../../models/Order/orderItems';
+import { OrderItems } from '../../models/Order/orderItems';
 import { orderItemsResponseModel } from '../../models/Order/orderItemsResponseModel';
 
 @Component({
@@ -12,7 +12,7 @@ import { orderItemsResponseModel } from '../../models/Order/orderItemsResponseMo
   styleUrl: './orderItems.component.css'
 })
 export class OrderItemsComponent implements OnInit {
-  orderItems: orderItems[] = [];
+  orderItems: OrderItems[] = [];
   apiUrl: string = "https://localhost:7292/api/OrderItems";
 
   orderItemResponseModel: orderItemsResponseModel = {

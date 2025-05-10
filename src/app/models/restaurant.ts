@@ -1,3 +1,4 @@
+import { Menu } from "./Menu/menu";
 import { Review } from "./review";
 import { User } from "./user";
 
@@ -9,7 +10,7 @@ export interface Restaurant{
     address: string;
     phoneNumber?: string;
     user?: User  
-    //menus?: Menu[];
+    menus?: Menu[];
     reviews?: Review[];
 
 }
