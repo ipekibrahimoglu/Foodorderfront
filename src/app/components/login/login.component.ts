@@ -19,17 +19,20 @@ export class LoginComponent {
     password: '',
     remember: false,
   };
-
+ 
   constructor(
     private userService: UserService,
     private router: Router,
     private fb: FormBuilder
+    
   ) {}
 
   ngOnInit(): void {
+  
    const savedUser = localStorage.getItem('user');
    if (savedUser) {
        const user = JSON.parse(savedUser);
+        console.log("userıd:" , user.userId);
 
        if (user.role === 'RestaurantOwner') {
          this.router.navigate(['/restoran-panel']);
@@ -39,23 +42,24 @@ export class LoginComponent {
      }
    }
 
-  onSubmit() {
-    this.userService.getUsers().subscribe((users: User[]) => {
-      const user = users.find((u) => u.email === this.loginData.email);
+ onSubmit() {
+  this.userService.getUsers().subscribe((users: User[]) => {
+    const user = users.find((u) => u.email === this.loginData.email);
 
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
 
-        if (user.role === 'RestaurantOwner') {
-          this.router.navigate(['/restoran-panel']);
-        } else if (user.role === 'Customer') {
-          this.router.navigate(['/menu']);
-        } else {
-          alert('Tanımsız kullanıcı rolü!');
-        }
+      if (user.role === 'RestaurantOwner') {
+        this.router.navigate(['/restoran-panel']);
+      } else if (user.role === 'Customer') {
+        this.router.navigate(['/menus']); // ✅ doğru yönlendirme burası
       } else {
-        alert('E-posta bulunamadı!');
+        alert('Tanımsız kullanıcı rolü!');
       }
-    });
-  }
+    } else {
+      alert('E-posta bulunamadı!');
+    }
+  });
+}
+
 }

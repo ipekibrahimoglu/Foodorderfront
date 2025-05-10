@@ -9,29 +9,43 @@ export const appRoutes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./components/login/login.component').then(m => m.LoginComponent)
+      import('./components/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
   },
   {
     path: 'iletisim',
     loadComponent: () =>
-      import('./components/iletisim/iletisim.component').then(m => m.IletisimComponent)
+      import('./components/iletisim/iletisim.component').then(
+        (m) => m.IletisimComponent
+      ),
+  },
+  
+  { path: '', redirectTo: 'menus', pathMatch: 'full' },
+  // { path: 'menus', component: MenuComponent },
+  { path: 'menuitems', component: MenuItemComponent },
+  { path: 'restaurants', component: RestaurantComponent },
+  { path: 'reviews', component: ReviewComponent },
+  {
+    path: 'menu-add',
+    loadComponent: () =>
+      import('./components/menu-add/menu-add.component').then(
+        (m) => m.MenuAddComponent
+      ),
   },
   {
     path: 'payments',
     loadComponent: () =>
       import('./components/payment/payment.component').then(m => m.PaymentComponent)
   },
-  { path: '', redirectTo: 'menus', pathMatch: 'full' },
-  { path: 'menuitems', component: MenuItemComponent },
-  { path: 'restaurants', component: RestaurantComponent },
-  { path: 'reviews', component: ReviewComponent },
 
+  { path: '**',
+     redirectTo: '' },
 
-  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

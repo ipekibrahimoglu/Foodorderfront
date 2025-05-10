@@ -70,7 +70,7 @@ userRole: any;
       this.currentMenu = menu;
     }
   }
-}
+
 
   // // // 2. Menü Ekleme (POST)
   //addMenu(newMenu: Menu) { // eklenecek menu olacak mı olacaksa nerede, şu an çalışmıyor ama parametre konarsa
@@ -99,10 +99,11 @@ userRole: any;
   //   });
   //  }
 
-  // // // 5. Menü Silme (DELETE /{id})// menu silme gerekli değil şu ann
-  //deleteMenu(id: string) {}
-  // //   this.menuService.deleteMenu().subscribe()
-  // // }
+  // deleteMenu(id: string) {
+  //    this.menuService.deleteMenu(id).subscribe();
+   }
+
+  //}
   //  // Restorana göre menüleri getir (GET /byrestaurant/{restaurantId})
   //  getMenusByRestaurant(restaurantId: string) {
   //    this.menuService.getMenusByRestaurant("Yeni Lezzet Restorani").subscribe({

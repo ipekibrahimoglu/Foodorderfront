@@ -1,0 +1,70 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-lg rounded-4 w-100">
+      <div class="card-header bg-success text-white text-center rounded-top-4">
+        <h4 class="mb-0">
+          <i class="bi bi-plus-circle me-2"></i>Yeni Menü Ekle
+        </h4>
+      </div>
+      <div class="card-body p-4">
+        <form (ngSubmit)="addMenu()" #menuForm="ngForm" novalidate>
+
+          <!-- Menü Adı -->
+          <div class="mb-3">
+            <label for="name" class="form-label">Menü Adı</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              required
+              [(ngModel)]="newMenu.name"
+              placeholder="Menü adını giriniz"
+            />
+            <div *ngIf="menuForm.submitted && !newMenu.name" class="text-danger small mt-1">
+              Menü adı zorunludur.
+            </div>
+          </div>
+
+          <!-- Açıklama -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Açıklama</label>
+            <textarea
+              class="form-control"
+              id="description"
+              name="description"
+              rows="3"
+              [(ngModel)]="newMenu.description"
+              placeholder="Menüye kısa bir açıklama ekleyin"
+            ></textarea>
+          </div>
+
+          <!-- Restoran ID -->
+          <div class="mb-3">
+            <label for="restaurantId" class="form-label">Restoran ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="restaurantId"
+              name="restaurantId"
+              required
+              [(ngModel)]="newMenu.restaurantId"
+              placeholder="Restoran ID giriniz"
+            />
+            <div *ngIf="menuForm.submitted && !newMenu.restaurantId" class="text-danger small mt-1">
+              Restoran ID zorunludur.
+            </div>
+          </div>
+
+          <!-- Kaydet Butonu -->
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-success btn-lg" [disabled]="menuForm.invalid">
+              💾 Kaydet
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,9 +12,7 @@ import { User } from '../../models/user';
 })
 export class UserComponent implements OnInit {
 userRole: any;
-goToPayment() {
-throw new Error('Method not implemented.');
-}
+
 
 userList:User[]=[];
 dataLoaded = false;
