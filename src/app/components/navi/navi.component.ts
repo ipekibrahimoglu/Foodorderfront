@@ -63,4 +63,4 @@ export class NaviComponent implements OnInit{
 }
 
 
-}
+

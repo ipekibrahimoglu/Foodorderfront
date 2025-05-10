@@ -1,4 +1,4 @@
-<!-- 
+
 <div *ngIf="!dataLoaded" class="d-flex justify-content-center mt-5">
   <div class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Yükleniyor...</span>
@@ -27,11 +27,11 @@
         <td>{{ order.orderDate | date: 'dd/MM/yyyy HH:mm' }}</td>
         
         <td>
-          <button class="btn btn-sm btn-danger" (click)="deleteOrder(order.orderId); $event.stopPropagation();">
+          <!-- <button class="btn btn-sm btn-danger" (click)="deleteOrder(order.orderId); $event.stopPropagation();">
             İptal Et
-          </button>
+          </button> -->
         </td>
       </tr>
     </tbody>
   </table>
-</div> -->
+</div> 

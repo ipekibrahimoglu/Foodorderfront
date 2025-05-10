@@ -15,7 +15,7 @@ import { OrderItemsComponent } from "./components/orderitem/orderItems.component
   selector: 'app-root',
   standalone: true,                                  
   imports: [CommonModule, NaviComponent, MenuComponent, RouterOutlet, RouterModule,
-    FormsModule, MenuItemComponent, RestaurantComponent, ReviewComponent, OrderItemsComponent 
+    FormsModule, MenuItemComponent, RestaurantComponent, ReviewComponent
     ],        
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -36,7 +36,11 @@ export class AppComponent {
   isLoginPage(): boolean {
     return this.router.url === '/login';
   }
-}
+//   isOrdersPage(): boolean {
+//     // tam eşleşme isterseniz === '/orders', 
+//     // alt rotalar da dahil olsun derseniz startsWith kullanın:
+//     return this.currentUrl.startsWith('/orders');
+// }
  
 // function isLoginPage() {
 //   throw new Error('Function not implemented.');
