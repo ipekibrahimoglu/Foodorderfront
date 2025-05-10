@@ -4,22 +4,27 @@ import { RestaurantResponseModel } from "../../models/restaurantResponseModel";
 import { HttpClient } from "@angular/common/http";
 import { Restaurant } from "../../models/restaurant";
 import { RestaurantService } from "../../restaurant.service";
+import { ReviewFormComponent } from "../add-review/add-review.component";
+import { Review } from "../../models/review";
+import { ReviewService } from "../../review.service";
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReviewFormComponent,RouterModule],
   templateUrl: './restaurant.component.html',
   styleUrl: './restaurant.component.css'
 })
 
 export class RestaurantComponent implements OnInit{
+  [x: string]: any;
   
   restaurants:Restaurant[]=[];
   currentRestaurant:Restaurant|null=null;
+  reviews:Review[]=[];
   
-  
-  constructor(private restaurantService:RestaurantService ){ }
+  constructor(private restaurantService:RestaurantService ,private reviewService:ReviewService,private router:Router ){ }
 
   ngOnInit(): void{ 
     this.getRestaurants();  
@@ -35,10 +40,32 @@ export class RestaurantComponent implements OnInit{
   setCurrentRestaurant(restaurant:Restaurant):void{
     if (this.currentRestaurant?.restaurantId===restaurant.restaurantId){
       this.currentRestaurant=null;
+      this.reviews=[];
     }else{
       this.currentRestaurant=restaurant;
+      this.getReviews(restaurant.restaurantId)
     }
     }
+    getReviews(restaurantId: string) {
+    this.reviewService["getReviewsByRestaurant"](restaurantId).subscribe((data: Review[]) => {
+      this.reviews = data;
+    });
+  }
+  
+  showReviewFormId: string | null = null;
+
+  toggleReviewForm(restaurantId: string) {
+  if (this.showReviewFormId === restaurantId) {
+    this.showReviewFormId = null;
+  } else {
+    this.showReviewFormId = restaurantId;
+  }
+}
+
+  onReviewAdded(restaurantId: string) {
+    this.getReviews(restaurantId);
+   this.showReviewFormId = null;
+}
     
    getLogoForRestaurant(name: string): string {
   const key = name

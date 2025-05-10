@@ -33,6 +33,11 @@ export const appRoutes: Routes = [
         (m) => m.MenuAddComponent
       ),
   },
+  {
+    path: 'restaurants/:id/add-review',
+    loadComponent: () =>
+      import('./components/add-review/add-review.component').then(m => m.ReviewFormComponent)
+  },
   
   {
     path: '**',
