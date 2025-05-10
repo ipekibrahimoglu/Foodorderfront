@@ -7,6 +7,6 @@ export interface Menu {
   name: string;
   description: string;
   restaurant: Restaurant;
-  menuItems?: MenuItems[];
+  menuItems: MenuItems[];
   
 }

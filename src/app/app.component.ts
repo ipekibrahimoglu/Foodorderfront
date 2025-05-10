@@ -36,8 +36,19 @@ import { MenuAddComponent } from "./components/menu-add/menu-add.component";
 ],
 })
 export class AppComponent {
+setCurrentMenu(_t9: any) {
+throw new Error('Method not implemented.');
+}
+addToCart(arg0: any) {
+throw new Error('Method not implemented.');
+}
+notifyMe(arg0: any) {
+throw new Error('Method not implemented.');
+}
   title = 'northwind';
   hideLayout: boolean = false;
+menus: any;
+currentMenu: any;
   constructor(public router: Router) {
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))

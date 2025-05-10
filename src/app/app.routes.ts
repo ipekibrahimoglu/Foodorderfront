@@ -6,11 +6,6 @@ import { RestaurantComponent } from './components/restaurant/restaurant.componen
 import { ReviewComponent } from './components/review/review.component';
 
 export const appRoutes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'login',
-  //   pathMatch: 'full' // ← ÖNEMLİ!
-  // },
   {
     path: 'login',
     loadComponent: () =>
@@ -38,6 +33,7 @@ export const appRoutes: Routes = [
         (m) => m.MenuAddComponent
       ),
   },
+  
   {
     path: '**',
     redirectTo: '',
