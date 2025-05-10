@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartItem } from '../../models/cartItem';
-import { MenuItems } from '../../models/Menu/menuItems';
-import { CartItems } from '../../models/cartItems';
 import { CartService } from '../../services/cart.service';
 
 @Component({

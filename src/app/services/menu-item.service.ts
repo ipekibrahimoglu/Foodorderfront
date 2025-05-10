@@ -1,9 +1,9 @@
 // src/app/services/menu-item.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MenuItems } from './models/Menu/menuItems';
 import { Observable } from 'rxjs';
-import { ListResponseModel } from './models/listResponseModel';
+import { ListResponseModel } from '../models/listResponseModel';
+import { MenuItems } from '../models/Menu/menuItems';
 
 @Injectable({
   providedIn: 'root'

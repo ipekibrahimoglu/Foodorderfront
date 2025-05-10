@@ -47,11 +47,7 @@ export class NaviComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  onSearch(event: Event): void {
-    event.preventDefault();
-    console.log('Arama yapıldı:', this.searchTerm);
-  }
-
+  
   logout() {
     localStorage.removeItem('user');
     this.userRole = null;
@@ -66,6 +62,12 @@ export class NaviComponent implements OnInit {
       formElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
+  onSearch(event: Event): void {
+    event.preventDefault();
+    console.log('Arama yapıldı:', this.searchTerm);
+  }
+
 }
 
 

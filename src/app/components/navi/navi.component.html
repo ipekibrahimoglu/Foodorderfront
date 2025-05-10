@@ -15,18 +15,18 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a
             class="nav-link"
             routerLink="/"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Anasayfa</a>
+          >Anasayfa</a>
         </li>
+
         <li class="nav-item" *ngIf="userRole === 'RestaurantOwner'">
           <a class="nav-link" (click)="scrollToMenuForm()">Menü Ekle</a>
-
         </li>
 
         <li class="nav-item dropdown">
@@ -40,17 +40,12 @@
             Restoranlar
           </a>
           <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" routerLink="/yeni-lezzet"
-                >Yeni Lezzet Restoranı</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/cigermatik">Ciğermatik</a>
-            </li>
+            <li><a class="dropdown-item" routerLink="/yeni-lezzet">Yeni Lezzet Restoranı</a></li>
+            <li><a class="dropdown-item" routerLink="/cigermatik">Ciğermatik</a></li>
             <li><a class="dropdown-item" routerLink="/dish-up">Dish Up!</a></li>
           </ul>
         </li>
+
         <li
           class="nav-item dropdown"
           (mouseenter)="showDropdown = true"
@@ -73,45 +68,41 @@
             [class.show]="showDropdown"
             aria-labelledby="iletisimDropdown"
           >
-            <li class="dropdown-item">
-              <strong>Telefon:</strong> +90 555 123 4567
-            </li>
-            <li class="dropdown-item">
-              <strong>E-posta:</strong> trakyasepeti&#64;trakya.com
-            </li>
+            <li class="dropdown-item"><strong>Telefon:</strong> +90 555 123 4567</li>
+            <li class="dropdown-item"><strong>E-posta:</strong> trakyasepeti&#64;trakya.com</li>
           </ul>
         </li>
 
         <li class="nav-item position-relative hakkimizda-hover">
           <span class="nav-link">Hakkımızda</span>
           <div class="hover-box">
-            Trakya Sepeti, yerel lezzetleri kullanıcılarla buluşturan bir
-            dijital platformdur.
+            Trakya Sepeti, yerel lezzetleri kullanıcılarla buluşturan bir dijital platformdur.
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/orders" routerLinkActive="active"
-            >Siparişler</a
-          >
+        
+        <li class="nav-item" *ngIf="userRole === 'RestaurantOwner'">
+          <a class="nav-link" routerLink="/orders" routerLinkActive="active">
+            Siparişler
+          </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cart" routerLinkActive="active"
-            >🛒 Sepetim</a
-          >
+       
+        <li class="nav-item" *ngIf="userRole === 'Customer'">
+          <a class="nav-link" routerLink="/cart" routerLinkActive="active">
+            🛒 Sepetim
+          </a>
         </li>
       </ul>
 
-      <div
-        class="d-flex align-items-center ms-auto"
-        *ngIf="userRole; else loginBtn"
-      >
+     
+      <div class="d-flex align-items-center ms-auto" *ngIf="userRole; else loginBtn">
         <button class="btn btn-danger" type="button" (click)="logout()">
           Çıkış Yap
         </button>
       </div>
 
+ 
       <ng-template #loginBtn>
         <div class="d-flex align-items-center ms-auto">
           <button class="btn btn-login" type="button" (click)="goToLogin()">

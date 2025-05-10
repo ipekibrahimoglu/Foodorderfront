@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Restaurant } from './models/restaurant';
+import { Restaurant } from '../models/restaurant';
 
 
 @Injectable({
@@ -13,7 +13,7 @@ export class RestaurantService {
   constructor(private httpClient:HttpClient) { }
 
   getRestaurants(): Observable<Restaurant[]> {
-    return this.httpClient.get<Restaurant[]>(this.apiUrl); // ✅ artık Restaurant[] dönecek
+    return this.httpClient.get<Restaurant[]>(this.apiUrl); 
   }
   
 

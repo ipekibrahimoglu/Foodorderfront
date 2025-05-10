@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Menu } from './models/Menu/menu';
 import { Observable } from 'rxjs';
-import { ListResponseModel } from './models/listResponseModel';
+import { ListResponseModel } from '../models/listResponseModel';
+import { Menu } from '../models/Menu/menu';
 
 
 @Injectable({
@@ -51,7 +51,6 @@ searchMenus(name?: string, restaurantId?: string): Observable<ListResponseModel<
   if (name) queryParams.push(`name=${encodeURIComponent(name)}`);
   if (restaurantId) queryParams.push(`restaurantId=${encodeURIComponent(restaurantId)}`);
   const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
-
   return this.httpclient.get<ListResponseModel<Menu>>(`${this.apiUrl}/search${queryString}`);
 }
 }

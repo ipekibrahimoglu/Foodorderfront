@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Menu } from '../../models/Menu/menu';
-import { MenuService } from '../../menu.service';
 import { MenuItems } from '../../models/Menu/menuItems';
 import { CartService } from '../../services/cart.service';
+import { ReviewComponent } from "../review/review.component";
+import { RestaurantComponent } from "../restaurant/restaurant.component";
+import { Router } from '@angular/router';
+import { MenuService } from '../../services/menu.service';
 
 @Component({
   standalone: true,
   selector: 'app-menu',
-  imports: [ CommonModule, FormsModule ],
+  imports: [CommonModule, FormsModule, ReviewComponent, RestaurantComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
@@ -22,7 +25,8 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private menuService: MenuService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +45,9 @@ export class MenuComponent implements OnInit {
       },
     });
   }
+isPaymentPage(): boolean {
+  return this.router.url.includes('payment'); // veya `includes('/payments')`
+}
 
   setCurrentMenu(menu: Menu): void {
     this.currentMenu =

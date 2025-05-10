@@ -1,25 +1,23 @@
-<!-- app.component.html -->
-
-<!-- Login sayfasıysa yalnızca router-outlet -->
-<div *ngIf="isLoginPage(); else mainLayout">
+<!-- Giriş sayfasıysa sadece router-outlet -->
+<div *ngIf="isLoginPage(); else layoutTemplate">
   <router-outlet></router-outlet>
 </div>
 
-<ng-template #mainLayout>
-  <!-- Logo Bar -->
+<!-- Ana layout -->
+<ng-template #layoutTemplate>
+  <!-- Her sayfada sabit kalan alanlar: Logo + Navbar -->
   <div class="logo-bar">
     <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img" />
     <span class="site-title">Trakya Sepeti</span>
   </div>
 
-  <!-- Navbar -->
   <app-navi></app-navi>
 
-  <!-- İçerik -->
   <div class="container mt-4">
     <div class="row">
-      <!-- Sidebar bölgesi: hideLayout true ise gizle -->
-      <ng-container *ngIf="!hideLayout">
+
+      <!-- Sadece detaylı sayfalarda gösterilecek layout parçaları -->
+      <ng-container *ngIf="!isSimplePage()">
         <div class="col-md-3">
           <app-menu></app-menu>
         </div>
@@ -32,16 +30,18 @@
         <div class="col-md-3">
           <app-review></app-review>
         </div>
-        <!-- Menü ekle formu da sidebar’ın bir parçasıysa: -->
+
+        <!-- Menü ekleme sayfasındaysan ayrıca menü formu -->
         <div *ngIf="isRestaurantOwner && isMenuAddPage()" class="col-12 mt-4">
           <app-menu-add></app-menu-add>
         </div>
       </ng-container>
 
-      <!-- Ana router-outlet bölgesi -->
-      <div [class.col-md-9]="!hideLayout" [class.col-12]="hideLayout">
+      <!-- Route ile gelen içerik -->
+      <div class="col-12">
         <router-outlet></router-outlet>
       </div>
+
     </div>
   </div>
 </ng-template>

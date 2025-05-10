@@ -21,6 +21,16 @@ import { filter } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+setCurrentMenu(_t9: any) {
+throw new Error('Method not implemented.');
+}
+addToCart(arg0: any) {
+throw new Error('Method not implemented.');
+}
+notifyMe(arg0: any) {
+throw new Error('Method not implemented.');
+}
+
   title = 'northwind';
   user: string = "ipek";
   hideLayout:boolean = false;
@@ -38,23 +48,30 @@ export class AppComponent {
   isLoginPage(): boolean {
     return this.router.url === '/login';
   }
-//   isOrdersPage(): boolean {
-//     // tam eşleşme isterseniz === '/orders', 
-//     // alt rotalar da dahil olsun derseniz startsWith kullanın:
-//     return this.currentUrl.startsWith('/orders');
-// }
- 
 
-  isMenuAddPage(): boolean {
-    return this.router.url === '/menu-ekle';
+  // 2. Sadece Logo + Navbar görünecek sayfalardan biri mi?
+  isSimplePage(): boolean {
+    const url = this.router.url;
+    return ['/menu-ekle', '/orders', '/cart'].some(path => url.startsWith(path));
   }
 
+  // 3. Menü ekleme sayfasında mıyız?
+  isMenuAddPage(): boolean {
+    return this.router.url.startsWith('/menu-ekle');
+  }
+
+  // 4. Kullanıcının rolü RestaurantOwner mı? (localStorage üzerinden)
   get isRestaurantOwner(): boolean {
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
-  return user?.role === 'RestaurantOwner';
-}
+    const userStr = localStorage.getItem('user');
+    if (!userStr) return false;
 
-
+    try {
+      const user = JSON.parse(userStr);
+      return user?.role === 'RestaurantOwner';
+    } catch (e) {
+      return false;
+    }
+  }
 
 }
   

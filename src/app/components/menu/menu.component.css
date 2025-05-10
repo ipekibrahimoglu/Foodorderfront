@@ -9,9 +9,7 @@
 .menu-title {
   font-size: 18px;
   font-weight: bold;
-  color: #c62828 !important;
-
-  margin-top: 5px;
+  color: #c62828;
 }
 
 .menu-description {
@@ -24,11 +22,12 @@
   font-style: italic;
   color: #795548;
 }
+
 .bg-trakya {
   background-color: #d84315;
   color: white;
 }
-.card-header {
-  text-align: center;
-  font-style: italic;
+.card {
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
