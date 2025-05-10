@@ -20,6 +20,7 @@ export const appRoutes: Routes = [
   { path: 'cart', component: OrderItemsComponent },
   //,{path:"",loadComponent:()=> import('./components/order/order.component').then(o=>OrderComponent)}
   { path: 'orders', component: OrderComponent },
+  {path: 'menu-ekle',loadComponent: () => import('./components/menu-add/menu-add.component').then( (m) => m.MenuAddComponent)},
   { path: 'order-items/:orderId', loadComponent: () => import('./components/orderitem/orderItems.components').then(m => m.OrderItemsComponent) },
   { path: '**', redirectTo: ''}
 

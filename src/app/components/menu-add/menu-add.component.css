@@ -1,0 +1,42 @@
+.card {
+  background-color: #c62828 !important;
+  color: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #b71c1c !important; /* daha koyu kırmızı ton */
+  color: white;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.card-body label {
+  color: #ffffff;
+}
+
+.card-body input,
+.card-body textarea {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ccc;
+}
+
+.card-body input::placeholder,
+.card-body textarea::placeholder {
+  color: #999999;
+}
+
+.btn-success {
+  background-color: #ffffff;
+  color: #c62828;
+  border: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #f0f0f0;
+  color: #b71c1c;
+}

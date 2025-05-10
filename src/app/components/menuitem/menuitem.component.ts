@@ -124,8 +124,8 @@ export class MenuItemComponent implements OnInit {
     });
   }
 
-  setCurrentMenuItem(menuitem: MenuItems): void {
-    this.currentMenuItem = menuitem;
-    console.log('secilen menuitem : ', menuitem);
-  }
+  // setCurrentMenuItem(menuitem: MenuItems): void {
+  //   this.currentMenuItem = menuitem;
+  //   console.log('secilen menuitem : ', menuitem);
+  // }
 }
