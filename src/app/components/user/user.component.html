@@ -1,1 +1,10 @@
-<p>user works!</p>
+<div class="container mt-5">
+
+  <!-- Buton sadece müşteri için -->
+  <div *ngIf="userRole === 'Customer'" class="text-center">
+    <button class="btn btn-success btn-lg px-4" (click)="goToPayment()">
+      💳 Ödemeye Geç
+    </button>
+  </div>
+
+</div>

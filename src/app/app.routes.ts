@@ -6,11 +6,6 @@ import { RestaurantComponent } from './components/restaurant/restaurant.componen
 import { ReviewComponent } from './components/review/review.component';
 
 export const appRoutes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'login',
-  //   pathMatch: 'full' // ← ÖNEMLİ!
-  // },
   {
     path: 'login',
     loadComponent: () =>
@@ -22,20 +17,21 @@ export const appRoutes: Routes = [
       import('./components/iletisim/iletisim.component').then(m => m.IletisimComponent)
   },
   {
-    path: '**',
-    redirectTo: ''
+    path: 'payments',
+    loadComponent: () =>
+      import('./components/payment/payment.component').then(m => m.PaymentComponent)
   },
   { path: '', redirectTo: 'menus', pathMatch: 'full' },
-  { path: 'menus', component: MenuComponent },
   { path: 'menuitems', component: MenuItemComponent },
   { path: 'restaurants', component: RestaurantComponent },
-  { path: 'reviews', component: ReviewComponent }
+  { path: 'reviews', component: ReviewComponent },
+
+
+  { path: '**', redirectTo: '' }
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

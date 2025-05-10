@@ -93,18 +93,18 @@ export class MenuItemComponent implements OnInit {
     });
   }
 
-  getMenuItemsByMenu(menuId: string): void {
-    this.menuItemService.getMenuItemsByMenu(menuId).subscribe({
-      next: (response: any) => {
-        this.menuItems = response;
-        this.menuItemsByMenuLoaded = true;
-      },
-      error: (err: any) => {
-        console.error('getMenuItemsByMenu error:', err);
-        this.menuItemsByMenuLoaded = true;
-      },
-    });
-  }
+  // getMenuItemsByMenu(menuId: string): void {
+  //   this.menuItemService.getMenuItemsByMenu(menuId).subscribe({
+  //     next: (response: any) => {
+  //       this.menuItems = response;
+  //       this.menuItemsByMenuLoaded = true;
+  //     },
+  //     error: (err: any) => {
+  //       console.error('getMenuItemsByMenu error:', err);
+  //       this.menuItemsByMenuLoaded = true;
+  //     },
+  //   });
+  // }
 
   searchMenuItems(
     name?: string,
@@ -124,8 +124,8 @@ export class MenuItemComponent implements OnInit {
     });
   }
 
-  setCurrentMenuItem(menuitem: MenuItems): void {
-    this.currentMenuItem = menuitem;
-    console.log('secilen menuitem : ', menuitem);
-  }
+  // setCurrentMenuItem(menuitem: MenuItems): void {
+  //   this.currentMenuItem = menuitem;
+  //   console.log('secilen menuitem : ', menuitem);
+  // }
 }

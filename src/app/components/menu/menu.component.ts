@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
+userRole: any;
+
   menus: Menu[] = [];
   currentMenu: Menu | null = null;
 

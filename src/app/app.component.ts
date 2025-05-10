@@ -13,6 +13,7 @@ import { MenuItemComponent } from './components/menuitem/menuitem.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { ReviewComponent } from './components/review/review.component';
 import { filter } from 'rxjs';
+import { UserComponent } from './components/user/user.component';
 //import { LoginComponent } from './components/login/login.component';
 
 
@@ -32,7 +33,8 @@ import { filter } from 'rxjs';
     FormsModule,
     MenuItemComponent,
     RestaurantComponent,
-    ReviewComponent
+    ReviewComponent,
+    UserComponent
      ] 
                  
 })
