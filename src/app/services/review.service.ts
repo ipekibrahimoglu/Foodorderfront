@@ -7,11 +7,9 @@ import { Review } from '../models/review';
   providedIn: 'root'
 })
 export class ReviewService {
- 
+  private apiUrl = 'http://localhost:5161/api/Reviews';
 
-private  apiUrl='https://localhost:7292/api/Reviews'
-
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Tüm yorumları getir
   getReviews(): Observable<Review[]> {

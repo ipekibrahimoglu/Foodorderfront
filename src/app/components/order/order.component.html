@@ -16,7 +16,6 @@
         <th>Restoran</th>
         <th>Tarih</th>
         <th>Durum</th>
-        <th>İşlem</th> 
       </tr>
     </thead>
     <tbody>
@@ -25,6 +24,8 @@
         <td>{{ order.user?.fullName }}</td>
         <td>{{ order.restaurant?.name }}</td>  
         <td>{{ order.orderDate | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ "Hazırlanıyor..." }}</td>  
+
         
         <td>
           <!-- <button class="btn btn-sm btn-danger" (click)="deleteOrder(order.orderId); $event.stopPropagation();">

@@ -1,11 +1,10 @@
-<!-- Giriş sayfasıysa sadece router-outlet -->
-<div *ngIf="isLoginPage(); else layoutTemplate">
+<!-- Giriş sayfasıysa sadece router-outlet göster -->
+<div *ngIf="isLoginPage(); else mainLayout">
   <router-outlet></router-outlet>
 </div>
 
-<!-- Ana layout -->
-<ng-template #layoutTemplate>
-  <!-- Her sayfada sabit kalan alanlar: Logo + Navbar -->
+<ng-template #mainLayout>
+  <!-- Logo ve Navbar her sayfada gösterilecek -->
   <div class="logo-bar">
     <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img" />
     <span class="site-title">Trakya Sepeti</span>
@@ -13,35 +12,35 @@
 
   <app-navi></app-navi>
 
-  <div class="container mt-4">
-    <div class="row">
+  <!-- Eğer özel sayfalardaysak (cart, orders, vs) sadece içerik -->
+  <ng-container *ngIf="hideLayout; else fullLayout">
+    <router-outlet></router-outlet>
+  </ng-container>
 
-      <!-- Sadece detaylı sayfalarda gösterilecek layout parçaları -->
-      <ng-container *ngIf="!isSimplePage()">
+  <!-- Ana sayfa düzeni -->
+  <ng-template #fullLayout>
+    <div class="container">
+      <div class="row">
         <div class="col-md-3">
           <app-menu></app-menu>
         </div>
-        <div class="col-md-3">
+
+        <div class="col-md-4">
           <app-menuitem></app-menuitem>
         </div>
+
         <div class="col-md-3">
           <app-restaurant></app-restaurant>
         </div>
-        <div class="col-md-3">
+
+        <div class="col-md-2">
           <app-review></app-review>
         </div>
 
-        <!-- Menü ekleme sayfasındaysan ayrıca menü formu -->
-        <div *ngIf="isRestaurantOwner && isMenuAddPage()" class="col-12 mt-4">
+        <!-- <div *ngIf="isRestaurantOwner" id="menuFormSection" class="mt-4">
           <app-menu-add></app-menu-add>
-        </div>
-      </ng-container>
-
-      <!-- Route ile gelen içerik -->
-      <div class="col-12">
-        <router-outlet></router-outlet>
+        </div> -->
       </div>
-
     </div>
-  </div>
+  </ng-template>
 </ng-template>

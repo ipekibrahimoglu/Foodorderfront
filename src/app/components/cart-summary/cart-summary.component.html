@@ -14,12 +14,13 @@
         <strong class="mx-2 text-dark">x{{ item.quantity }}</strong>
       </div>
 
-    
-      <div class="px-3 text-end">
-        <small class="text-secondary">Ücreti</small><br>
+      <div class="text-end">
+        <small class="text-secondary">Ücreti</small><br />
         <strong class="text-dark">
-          {{ (item.menuItem.price * item.quantity)
-             | currency:'TRY':'symbol':'1.2-2' }}
+          {{
+            (item.menuItem.price * item.quantity)
+              | currency: 'TRY' : 'symbol' : '1.2-2'
+          }}
         </strong>
       </div>
 
@@ -43,14 +44,21 @@
   </ul>
 
   <!-- Footer: Toplam ve Ödeme Butonu -->
-  <div *ngIf="cartItems.length > 0"
-       class="card-footer d-flex justify-content-between align-items-center">
+  <div
+    *ngIf="cartItems.length > 0"
+    class="card-footer d-flex justify-content-between align-items-center"
+  >
     <div>
       <strong class="text-dark">Toplam:</strong>
-      <strong class="text-dark">{{ total | currency:'TRY':'symbol':'1.2-2' }}</strong>
+      <strong class="text-dark">{{ total | currency: 'TRY' : 'symbol' : '1.2-2' }}</strong>
     </div>
-    <button class="btn btn-success">
+    <button class="btn btn-success" (click)="completePayment()">
       Ödeme Yap
     </button>
   </div>
+</div>
+
+<!-- Ödeme sonrası toast mesajı -->
+<div class="custom-toast animate-slide-in" *ngIf="showToast">
+  ✅ Ödemeniz başarıyla gerçekleştirildi!
 </div>

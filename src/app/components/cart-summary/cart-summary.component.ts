@@ -33,5 +33,14 @@ cartItems:CartItem[]=[];
   this.getCart();
 }
   
+  showToast = false;
 
+  completePayment() {
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000);
+
+}
 }

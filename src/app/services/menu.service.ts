@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ListResponseModel } from '../models/listResponseModel';
 import { Menu } from '../models/Menu/menu';
+import { ListResponseModel } from '../models/listResponseModel';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Menu } from '../models/Menu/menu';
 })
 export class MenuService {
  
- apiUrl: string = 'https://localhost:7292/api/Menus';
+ apiUrl: string = 'http://localhost:5161/api/Menus';
 
   constructor(private httpclient: HttpClient) { }
 

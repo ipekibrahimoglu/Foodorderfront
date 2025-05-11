@@ -57,5 +57,5 @@ export class LoginComponent implements OnInit {
         alert('E-posta bulunamadı!');
       }
     });
-  }
-}
+  }}
+

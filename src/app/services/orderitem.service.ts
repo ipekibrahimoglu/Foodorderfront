@@ -12,7 +12,7 @@ import { CreateOrderItemDto } from '../models/Order/createOrderItemDto';
 export class OrderItemService {
 
   constructor(private httpClient: HttpClient) { }
-  apiUrl = 'https://localhost:7292/api/OrderItems';
+  apiUrl = 'http://localhost:5161/api/OrderItems';
 
 
   getOrderItems(): Observable<OrderItem[]>{

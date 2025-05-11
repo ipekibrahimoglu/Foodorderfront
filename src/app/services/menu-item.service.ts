@@ -10,7 +10,7 @@ import { MenuItems } from '../models/Menu/menuItems';
 })
 export class MenuItemService {
 
-  private apiUrl = 'https://localhost:7292/api/MenuItems';
+  private apiUrl = 'http://localhost:5161/api/MenuItems';
 
   constructor(private http: HttpClient) {}
 

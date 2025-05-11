@@ -9,7 +9,7 @@ import { Payment } from '../models/payment';
 })
 export class PaymentService {
   
-  private apiUrl = 'https://localhost:7292/api/Payments';
+  private apiUrl = 'http://localhost:5161/api/Payments';
 
   constructor(private http: HttpClient) {}
 
