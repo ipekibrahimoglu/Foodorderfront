@@ -28,5 +28,10 @@ cartItems:CartItem[]=[];
       .map(i => i.menuItem.price * i.quantity)
       .reduce((acc, v) => acc + v, 0);
   }
+  removeFromCart(item: CartItem): void {
+  this.cartService.removeFromCart(item.menuItem);
+  this.getCart();
+}
+  
 
 }

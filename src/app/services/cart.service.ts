@@ -21,6 +21,20 @@ export class CartService {
       CartItems.push(cartItem);
     }
   }
+  removeFromCart(menuitem: MenuItems) {
+ 
+  let item = CartItems.find(
+    (c) => c.menuItem.menuItemId == menuitem.menuItemId
+  );
+  if (item) {
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    } else {
+      const index = CartItems.indexOf(item);
+      CartItems.splice(index, 1);
+    }
+  }
+}
     list(): CartItem[] {
     return CartItems;
   }
