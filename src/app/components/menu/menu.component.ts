@@ -1,53 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Menu } from '../../models/Menu/menu';
-import { MenuService } from '../../services/menu.service';
 import { FormsModule } from '@angular/forms';
+import { Menu } from '../../models/Menu/menu';
+import { MenuItems } from '../../models/Menu/menuItems';
+import { CartService } from '../../services/cart.service';
 import { ReviewComponent } from "../review/review.component";
 import { RestaurantComponent } from "../restaurant/restaurant.component";
+import { Router } from '@angular/router';
+import { MenuService } from '../../services/menu.service';
 
 @Component({
   standalone: true,
   selector: 'app-menu',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReviewComponent, RestaurantComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
   menus: Menu[] = [];
   currentMenu: Menu | null = null;
+  successMessage = '';
+  menusLoaded = false;
+   currentItem: MenuItems | null = null;
 
-  menusLoaded: boolean = false;
-  menuByIdLoaded: boolean = false;
-  menusByRestaurantLoaded: boolean = false;
-  searchMenusLoaded: boolean = false;
-
-  constructor(private menuService: MenuService) {
-    // Bağımlılık burada inject edilir, constructor çalıştığında henüz ngOnInit çalışmamıştır.
-  }
+  constructor(
+    private menuService: MenuService,
+    private cartService: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getMenus();
-    //this.getMenuById("5d2dd6db-5618-f011-91fb-2c98111a44ca");
-    //this.addMenu(); parametre gerekli
-    // this.updateMenu();
-    // this.addMenu();
-    //this.searchMenus();
-    //this.deleteMenu();
-    //this.getMenusByRestaurant();
   }
 
-  // 1. Tüm Menüler
-  // menu.component.ts
   getMenus() {
     this.menuService.getMenus().subscribe({
       next: (response: any) => {
-        console.log('Full response:', response);
-        console.log('Keys:', Object.keys(response));
-        console.log('response.data:', response.data);
-        console.log('response.Data:', response.Data);
-        console.log('is array:', Array.isArray(response));
-
         this.menus = response;
         this.menusLoaded = true;
       },
@@ -57,29 +45,37 @@ export class MenuComponent implements OnInit {
       },
     });
   }
-
-  setCurrentMenus(menu: Menu) {
-    this.currentMenu = menu;
-    console.log('seçilen menü :', this.currentMenu);
-  }
-
- setCurrentMenu(menu: Menu): void {
-  if (this.currentMenu?.menuId === menu.menuId) {
-    // Aynı menüye tıklanırsa gizle
-    this.currentMenu = null;
-  } else {
-    // Farklı menüye tıklanırsa göster
-    this.currentMenu = menu;
-  }
+isPaymentPage(): boolean {
+  return this.router.url.includes('payment'); // veya `includes('/payments')`
 }
 
+  setCurrentMenu(menu: Menu): void {
+    this.currentMenu =
+      this.currentMenu?.menuId === menu.menuId ? null : menu;
+    this.successMessage = '';
+  }
 
-  addToCart(currentMenu:Menu){console.log(currentMenu )}
-  notifyMe(currentMenu: Menu): void {
-    // Burada backend’e bildirim isteği gönderebilir ya da basitçe alert kullanabilirsin.
-    // Örneğin:
-    alert(`${currentMenu.name} menüsüne yeni ürün eklendiğinde size haber verilecek!`);
-}
+  addToCart(item: MenuItems): void {
+    console.log('addToCart çağrıldı, item:', item);
+
+    // Sepete ekleme
+    this.cartService.addTocart(item);
+
+    // Başarı mesajı
+    this.successMessage = `${item.name} sepete eklendi!`;
+    setTimeout(() => (this.successMessage = ''), 3000);
+  }
+
+  // Eğer ürünü bulamazsan, doğrudan bu metodu çağırabilirsin
+  notifyNoItem(): void {
+    this.successMessage = 'Sepete ekleyecek ürün bulunamadı.';
+    if (this.currentMenu) this.notifyMe(this.currentMenu);
+    setTimeout(() => (this.successMessage = ''), 3000);
+  }
+
+  notifyMe(menu: Menu): void {
+    alert(`${menu.name} menüsüne yeni ürün eklendiğinde haber verilecektir.`);
+  }
 }
 
 

@@ -1,0 +1,24 @@
+.custom-toast {
+  position: fixed;
+  bottom: 30px;
+  right: -400px;
+  background-color: #198754;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+  animation: slide-in 0.4s forwards;
+}
+
+@keyframes slide-in {
+  from {
+    right: -400px;
+    opacity: 0;
+  }
+  to {
+    right: 30px;
+    opacity: 1;
+  }
+}

@@ -1,39 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { OrderItems } from '../../models/Order/orderItems';
-import { orderItemsResponseModel } from '../../models/Order/orderItemsResponseModel';
+import { OrderItem } from '../../models/Order/orderItem';
+import { OrderItemService } from '../../services/orderitem.service';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-order-item',
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './orderItems.component.html',
-  styleUrl: './orderItems.component.css'
+  styleUrl: './orderItems.component.css',
 })
 export class OrderItemsComponent implements OnInit {
-  orderItems: OrderItems[] = [];
-  apiUrl: string = "https://localhost:7292/api/OrderItems";
+  orderItems: OrderItem[] = [];
+  addedOrderItem!: OrderItem;
+  loading:boolean=true;
 
-  orderItemResponseModel: orderItemsResponseModel = {
-    data: this.orderItems,
-    message: "",
-    success: true,
-  };
+ 
 
-  constructor(private httpClient: HttpClient) {
-    this.httpClient.get;
-  }
+  constructor(
+    private orderItemService: OrderItemService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    console.log("OrderItemComponent başladı");
     this.getOrderItems();
-  }
+    const orderId = this.route.snapshot.paramMap.get('orderId');
+    if (orderId) {
+      this.getOrderItemsByOrderId(orderId);
+    } else {
+      console.warn('OrderId parametresi bulunamadı.');
+    };
+    }
+    
+  
 
-  getOrderItems(): void {
-    this.httpClient.get<orderItemsResponseModel>(this.apiUrl)
-      .subscribe(response => {
-        this.orderItems = response.data;
+  getOrderItems() {
+    this.orderItemService.getOrderItems().subscribe((response:any) => {
+      this.orderItems = response;
+    });
+  }
+ 
+  addOrderItem(item: OrderItem): void {
+    this.orderItemService.addOrderItem(item).subscribe((response:any)  => {
+      this.addedOrderItem = response;
+    });
+  }
+ 
+  deleteOrderItem(orderItemId: string): void {
+    if (confirm("Bu sipariş öğesini silmek istediğinize emin misiniz?")) {
+      this.orderItemService.deleteOrderItem(orderItemId).subscribe(() => {
+        this.orderItems = this.orderItems.filter(item => item.orderItemId !== orderItemId);
       });
+    }
+  }
+ 
+
+
+ getOrderItemsByOrderId(orderId: string): void {
+    this.orderItemService.getOrderItemsByOrderId(orderId).subscribe((response: any)=> {
+      this.orderItems = response;
+    });
   }
 }

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';//bu sayade backenden veri çekebiliriz çekebiliriz.
-import { WeatherForecastResponseModel } from '../../models/weatherForecastResponseModel';
+import { HttpClient } from '@angular/common/http';
 import { WeatherForecast } from '../../models/weatherForecast';
+import { ListResponseModel } from '../../models/listResponseModel';
 
 @Component({
   selector: 'app-weatherforecast',
@@ -23,7 +23,7 @@ export class WeatherForecastComponent implements OnInit{
 
   getWeatherForecasts(){
     this.httpClient
-    .get<WeatherForecastResponseModel>(this.apiUrl).
+    .get<ListResponseModel<WeatherForecast>>(this.apiUrl).
     subscribe((response)=>{
       this.weatherForecasts=response.data
     });

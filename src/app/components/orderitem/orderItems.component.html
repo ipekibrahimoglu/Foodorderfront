@@ -1,7 +1,45 @@
-<h2>Sipariş Öğeleri</h2>
-<ul *ngIf="orderItems.length > 0">
-  <li *ngFor="let item of orderItems">
-    <strong>{{ item.menuItem.name }}</strong> - {{ item.quantity }} adet - {{ item.price }} TL
-  </li>
-</ul>
-<p *ngIf="orderItems.length === 0">Henüz sipariş bulunamadı.</p>
+<!-- <div class="container-fluid bg-light min-vh-100 p-4">
+  <h2 class="text-center mb-4">🛒 Sepetim</h2>
+
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Yükleniyor...</span>
+    </div>
+  </div>
+
+  <table *ngIf="!loading && orderItems.length > 0" class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Sipariş ID</th>
+        <th>Tarih</th>
+        <th>Ürün</th>
+        <th>Açıklama</th>
+        <th>Adet</th>
+        <th>Fiyat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderItems">
+        <td>{{ item.orderId }}</td>
+        <td>{{ item.order.orderDate | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ item.menuItem.name }}</td>
+        <td>{{ item.menuItem.description }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price | currency:'TRY' }}</td>
+        <td><button class="btn btn-sm btn-danger" (click)="deleteOrderItem(item.orderItemId); $event.stopPropagation();">
+            Sil
+        </button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && orderItems.length === 0" class="alert alert-warning text-center">
+    Sepette ürün yok.
+  </div>
+</div> 
+
+ <ul class="list-group">
+  <li (click)="getOrderItemsByOrderId(orderitem.orderId)"*ngFor="let orderitem of orderItems"
+  class="list-group-item">{{orderitem.price}}</li>
+</ul> -->
+

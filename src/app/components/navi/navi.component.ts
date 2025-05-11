@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router'; 
+
+
+
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navi',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [
+    CommonModule,
+    RouterModule ,
+    FormsModule,
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './navi.component.html',
   styleUrls: ['./navi.component.css'],
 })
@@ -60,3 +69,10 @@ export class NaviComponent implements OnInit {
   }
 
 }
+
+
+
+
+
+
+

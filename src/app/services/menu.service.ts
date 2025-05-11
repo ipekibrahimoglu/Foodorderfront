@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Menu } from '../models/Menu/menu';
 import { Observable } from 'rxjs';
-import { ListResponsemodel } from '../models/listResponseModel';
+import { Menu } from '../models/Menu/menu';
+import { ListResponseModel } from '../models/listResponseModel';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,43 +15,42 @@ export class MenuService {
   constructor(private httpclient: HttpClient) { }
 
   //Tüm Menüler
-getMenus(): Observable<ListResponsemodel<Menu>> {
-  return this.httpclient.get<ListResponsemodel<Menu>>(`${this.apiUrl}`); // subscribe olmak isteyen componenttir
+getMenus(): Observable<ListResponseModel<Menu>> {
+  return this.httpclient.get<ListResponseModel<Menu>>(`${this.apiUrl}`); // subscribe olmak isteyen componenttir
  //Observable yani subscribe olunabilir bir menuresponsemodel döndürecek 
 }
 
 // 2. Menü Ekleme (POST)
-addMenu(newMenu: Menu):Observable<ListResponsemodel<Menu>> {
- return  this.httpclient.post<ListResponsemodel<Menu>>(`${this.apiUrl}`, newMenu);
+addMenu(newMenu: Menu):Observable<ListResponseModel<Menu>> {
+ return  this.httpclient.post<ListResponseModel<Menu>>(`${this.apiUrl}`, newMenu);
 }
 
 // 3. Menü Güncelleme (PUT)
-updateMenu(updatedMenu: Menu):Observable<ListResponsemodel<Menu>> {
-  return this.httpclient.put<ListResponsemodel<Menu>>(`${this.apiUrl}`, updatedMenu);
+updateMenu(updatedMenu: Menu):Observable<ListResponseModel<Menu>> {
+  return this.httpclient.put<ListResponseModel<Menu>>(`${this.apiUrl}`, updatedMenu);
 }
 
 // 4. Menü ID ile Getirme (GET /{id})
-getMenuById(id: string):Observable<ListResponsemodel<Menu>> {
-  return this.httpclient.get<ListResponsemodel<Menu>>(`${this.apiUrl}/${id}`);
+getMenuById(id: string):Observable<ListResponseModel<Menu>> {
+  return this.httpclient.get<ListResponseModel<Menu>>(`${this.apiUrl}/${id}`);
 }
 
 // 5. Menü Silme (DELETE /{id})
-deleteMenu(id: string):Observable<ListResponsemodel<Menu>> {
-  return this.httpclient.delete<ListResponsemodel<Menu>>(`${this.apiUrl}/${id}`);
+deleteMenu(id: string):Observable<ListResponseModel<Menu>> {
+  return this.httpclient.delete<ListResponseModel<Menu>>(`${this.apiUrl}/${id}`);
 }
 
 // 6. Restorana göre menüleri getir (GET /byrestaurant/{restaurantId})
-getMenusByRestaurant(restaurantId: string):Observable<ListResponsemodel<Menu>> {
-  return this.httpclient.get<ListResponsemodel<Menu>>(`${this.apiUrl}/byrestaurant/${restaurantId}`);
+getMenusByRestaurant(restaurantId: string):Observable<ListResponseModel<Menu>> {
+  return this.httpclient.get<ListResponseModel<Menu>>(`${this.apiUrl}/byrestaurant/${restaurantId}`);
 }
 
 // 7. Menü arama (GET /search?name=x&restaurantId=y)
-searchMenus(name?: string, restaurantId?: string): Observable<ListResponsemodel<Menu>> {
+searchMenus(name?: string, restaurantId?: string): Observable<ListResponseModel<Menu>> {
   const queryParams = [];
   if (name) queryParams.push(`name=${encodeURIComponent(name)}`);
   if (restaurantId) queryParams.push(`restaurantId=${encodeURIComponent(restaurantId)}`);
   const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
-
-  return this.httpclient.get<ListResponsemodel<Menu>>(`${this.apiUrl}/search${queryString}`);
+  return this.httpclient.get<ListResponseModel<Menu>>(`${this.apiUrl}/search${queryString}`);
 }
 }

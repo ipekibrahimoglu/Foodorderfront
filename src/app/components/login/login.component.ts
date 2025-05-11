@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent  {
   loginData = {
     email: '',
     password: '',
@@ -57,5 +57,5 @@ export class LoginComponent {
         alert('E-posta bulunamadı!');
       }
     });
-  }
-}
+  }}
+

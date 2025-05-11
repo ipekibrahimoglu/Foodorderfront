@@ -1,12 +1,12 @@
-import { Order } from "./order";
 import { MenuItems } from "../Menu/menuItems";
+import { Order } from "./order";
 
-export interface OrderItems {
-  orderItemId: string;
+export interface OrderItem {
+  orderItemId?: string;
   orderId: string;
   menuItemId: string;
   quantity: number;
   price: number;
-  order: Order;
-  menuItem: MenuItems;
+  order?: Order;
+  menuItem?: MenuItems;
 }

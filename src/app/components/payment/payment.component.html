@@ -1,1 +1,75 @@
-<p>payment works!</p>
+<!-- Sadece müşteri rolündeyse ödeme ekranını göster -->
+<div *ngIf="userRole === 'Customer'" class="container mt-4">
+
+    
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <!-- Başlık -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">💳 Ödeme Geçmişiniz</h5>
+        </div>
+
+        <!-- Ödeme geçmişi listesi -->
+        <div class="card-body">
+
+          <div *ngIf="payments.length > 0; else noPayments">
+            <ul class="list-group">
+              <li *ngFor="let payment of payments" class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <strong>{{ payment.amount }} ₺</strong><br />
+                  <small>Tarih: {{ payment.paymentDate | date:'short' }}</small><br />
+                  <small>Yöntem: {{ payment.paymentMethod }}</small><br />
+                  <small>Sipariş ID: {{ payment.orderId }}</small>
+                </div>
+                <span class="badge bg-{{ payment.isSuccessful ? 'success' : 'danger' }}">
+                  {{ payment.isSuccessful ? 'Başarılı' : 'Başarısız' }}
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <ng-template #noPayments>
+            <div class="alert alert-info mt-3">Henüz bir ödeme kaydı bulunamadı.</div>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- Yeni ödeme formu -->
+      <div class="card mt-4 shadow-sm">
+        <div class="card-header bg-secondary text-white">
+          <h5 class="mb-0">Yeni Ödeme Yap</h5>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="addPayment()">
+            <div class="mb-3">
+              <label class="form-label">Tutar (₺)</label>
+              <input [(ngModel)]="newPayment.amount" name="amount" type="number" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Ödeme Yöntemi</label>
+              <input [(ngModel)]="newPayment.paymentMethod" name="method" type="text" class="form-control" placeholder="Kredi Kartı, Havale..." required />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Sipariş ID</label>
+              <input [(ngModel)]="newPayment.orderId" name="orderId" type="text" class="form-control" required />
+            </div>
+
+            <button class="btn btn-success w-100" type="submit">💸 Ödeme Yap</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- app.component.html içinde bir köşeye eklenebilir -->
+
+<!-- Eğer müşteri değilse -->
+<div *ngIf="userRole !== 'Customer'" class="container mt-5">
+  <div class="alert alert-warning">Bu sayfa sadece müşteri hesabı ile görüntülenebilir.</div>
+</div>

@@ -1,43 +1,46 @@
+<!-- Giriş sayfasıysa sadece router-outlet göster -->
 <div *ngIf="isLoginPage(); else mainLayout">
   <router-outlet></router-outlet>
 </div>
 
 <ng-template #mainLayout>
-  <!-- Logo ve Site Adı -->
+  <!-- Logo ve Navbar her sayfada gösterilecek -->
   <div class="logo-bar">
     <img src="assets/trakyasepeti6.png" alt="Logo" class="logo-img" />
     <span class="site-title">Trakya Sepeti</span>
   </div>
 
-  <div class="container">
-    <app-navi></app-navi>
+  <app-navi></app-navi>
 
-    <div class="row">
-      <div class="col-md-3">
-        <app-menu></app-menu>
-      </div>
-
-      <div class="col-md-4">
-        <app-menuitem></app-menuitem>
-      </div>
-
-      <div class="col-md-3">
-        <app-restaurant></app-restaurant>
-      </div>
-
-      <div class="col-md-2">
-        <app-review></app-review>
-      </div>
-      
-      <div *ngIf="isRestaurantOwner" id="menuFormSection" class="mt-4">
-        <app-menu-add></app-menu-add>
-      </div>
-
-      <!-- <div class="col-md-3">
-         <app-order></app-order>  
-      </div> -->
-    </div>
-
+  <!-- Eğer özel sayfalardaysak (cart, orders, vs) sadece içerik -->
+  <ng-container *ngIf="hideLayout; else fullLayout">
     <router-outlet></router-outlet>
-  </div>
+  </ng-container>
+
+  <!-- Ana sayfa düzeni -->
+  <ng-template #fullLayout>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <app-menu></app-menu>
+        </div>
+
+        <div class="col-md-4">
+          <app-menuitem></app-menuitem>
+        </div>
+
+        <div class="col-md-3">
+          <app-restaurant></app-restaurant>
+        </div>
+
+        <div class="col-md-2">
+          <app-review></app-review>
+        </div>
+
+        <div *ngIf="isRestaurantOwner" id="menuFormSection" class="mt-4">
+          <app-menu-add></app-menu-add>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </ng-template>
