@@ -17,11 +17,13 @@ import { MenuService } from '../../services/menu.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
+[x: string]: any;
   menus: Menu[] = [];
   currentMenu: Menu | null = null;
   successMessage = '';
   menusLoaded = false;
    currentItem: MenuItems | null = null;
+   
 
   constructor(
     private menuService: MenuService,
