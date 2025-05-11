@@ -6,26 +6,25 @@
   <ul class="list-group list-group-flush">
     <li
       *ngFor="let item of cartItems"
-      class="list-group-item d-flex align-items-center"
+      class="list-group-item d-flex justify-content-between align-items-center"
     >
-    
-      <div class="d-flex align-items-center flex-grow-1">
-        <strong class="text-dark">{{ item.menuItem.name }}</strong>
-        <strong class="mx-2 text-dark">x{{ item.quantity }}</strong>
+      <!-- Sol: Ürün adı + adet -->
+      <div class="d-flex align-items-center">
+        <strong class="me-2 text-dark">{{ item.menuItem.name }}</strong>
+        <span class="text-dark">x{{ item.quantity }}</span>
       </div>
 
-      <div class="text-end">
-        <small class="text-secondary">Ücreti</small><br />
-        <strong class="text-dark">
-          {{
-            (item.menuItem.price * item.quantity)
-              | currency: 'TRY' : 'symbol' : '1.2-2'
-          }}
-        </strong>
-      </div>
-
-  
-      <div>
+      <!-- Sağ: Ücreti + Sepetten Çıkar butonu -->
+      <div class="d-flex align-items-center">
+        <div class="text-end me-3">
+          <small class="text-secondary d-block">Ücreti</small>
+          <strong class="text-dark">
+            {{
+              (item.menuItem.price * item.quantity)
+              | currency:'TRY':'symbol':'1.2-2'
+            }}
+          </strong>
+        </div>
         <button
           class="btn btn-sm btn-danger"
           (click)="removeFromCart(item); $event.stopPropagation()"
@@ -50,7 +49,7 @@
   >
     <div>
       <strong class="text-dark">Toplam:</strong>
-      <strong class="text-dark">{{ total | currency: 'TRY' : 'symbol' : '1.2-2' }}</strong>
+      <strong class="text-dark">{{ total | currency:'TRY':'symbol':'1.2-2' }}</strong>
     </div>
     <button class="btn btn-success" (click)="completePayment()">
       Ödeme Yap
@@ -58,7 +57,11 @@
   </div>
 </div>
 
-<!-- Ödeme sonrası toast mesajı -->
-<div class="custom-toast animate-slide-in" *ngIf="showToast">
+<!-- Ödeme sonrası toast mesajı (üst üste binmesin diye position ayarı) -->
+<div
+  class="custom-toast animate-slide-in"
+  *ngIf="showToast"
+  style="position: fixed; bottom: 20px; right: 20px; z-index: 1050;"
+>
   ✅ Ödemeniz başarıyla gerçekleştirildi!
 </div>
